@@ -1,0 +1,37 @@
+# TODO
+- [ ] SHLang specification
+	- [ ] contents
+	- [ ] introduction
+	- [ ] lexical structure
+	- [ ] variables
+	- [ ] functions
+	- [ ] expressions
+	- [ ] statements
+	- [ ] execution
+	- [ ] grammars
+- [ ] test framework
+	- [ ] tests
+- [ ] input_stream class
+	- [ ] tests
+- [ ] output_stream class
+	- [ ] tests
+- [ ] symbol_table class
+	- [ ] tests
+- [ ] ast classes
+	- [ ] abstract_node class
+	- [ ] program class
+	- [ ] variable_definition class
+	- [ ] function_definition class
+	- [ ] variable_assignment class
+	- [ ] call_expression class
+	- [ ] binary_expression class
+	- [ ] unary_expression class
+	- [ ] identifier class
+	- [ ] number_literal class
+	- [ ] tests
+- [ ] visitor classes
+	- [ ] abstract_visitor class
+	- [ ] ast_printer class
+	- [ ] ast_constrainer class
+	- [ ] ast_codegen class
+	- [ ] tests
