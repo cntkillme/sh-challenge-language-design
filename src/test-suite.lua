@@ -66,13 +66,13 @@ end
 --- Adds a passing test.
 function test_suite:pass(message)
 	self._passed = self._passed + 1
-	table.insert(self._tests, { passed = true, message = message or "", source = get_source() or "null" })
+	table.insert(self._tests, { passed = true, message = message or "", source = get_source() })
 end
 
 --- Adds a failing test.
 function test_suite:fail(message)
 	self._failed = self._failed + 1
-	table.insert(self._tests, { passed = false, message = message or "", source = get_source() or "null" })
+	table.insert(self._tests, { passed = false, message = message or "", source = get_source() })
 end
 
 --- Tests an expression and returns it.
@@ -180,6 +180,8 @@ function test_suite:did_invoke_fail(callable, ...)
 	return table.unpack(values, 1, values.n)
 end
 
+-- luacov: disable
+
 local info = debug.getinfo(1)
 
 --- @return string
@@ -187,10 +189,14 @@ function get_source()
 	for n = 1, math.huge do
 		local info2 = debug.getinfo(n)
 
-		if info.source ~= info2.source then
+		if info2 and info.source ~= info2.source then
 			return ("%s:%d"):format(info2.short_src, info2.currentline);
+		elseif not info2 then
+			break
 		end
 	end
+
+	return "none"
 end
 
 --- @param char string
@@ -261,5 +267,7 @@ function prettify_table(tbl, depth, seen)
 	table.insert(chunk, "\n" .. ("\t"):rep(depth - 1) .. "}")
 	return table.concat(chunk)
 end
+
+-- luacov: enable
 
 return test_suite
