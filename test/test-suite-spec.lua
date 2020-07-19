@@ -1,11 +1,6 @@
 local test_suite = require("test-suite")
 
---- Test suite executor. The return value of this function dictates how testing progresses:
----  - a return value of `"continue"` continues test suite execution,
----  - a return value of `"abort"` aborts testing if there is any failed tests,
----  - and a return value of `"todo"` ignores the results of this test suite.
 --- @param self test_suite
---- @return string
 return function(self)
 	self:is_equal(self:tests(), {});
 	self:is_equal(self:tests_passed(), 1)
@@ -50,6 +45,4 @@ return function(self)
 	self:is_truthy("")
 	self:is_falsy(false)
 	self:is_falsy(nil)
-
-	return "abort"
 end

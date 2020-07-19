@@ -73,12 +73,7 @@ local function read_file(path, binary)
 	return table.concat(contents)
 end
 
---- Test suite executor. The return value of this function dictates how testing progresses:
----  - a return value of `"continue"` continues test suite execution,
----  - a return value of `"abort"` aborts testing if there is any failed tests,
----  - and a return value of `"todo"` ignores the results of this test suite.
 --- @param self test_suite
---- @return string
 return function(self)
 	test_input_stream_pass(
 		self,
@@ -104,6 +99,4 @@ return function(self)
 
 	self:did_invoke_fail(input_stream.fromFile, "bad_file")
 	self:did_invoke_fail(input_stream.fromBuffer, 123)
-
-	return "abort"
 end

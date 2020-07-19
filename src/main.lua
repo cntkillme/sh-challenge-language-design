@@ -50,23 +50,13 @@ for _, path in ipairs(spec) do
 	local ts = test_suite.new()
 	local tester = require(path)
 	local started = os.clock()
-	local mode = tester(ts)
+	tester(ts)
 	local elapsed = os.clock() - started
 
-	if mode ~= "todo" then
-		output_tests(ts, path, elapsed)
-		tests_passed = tests_passed + ts:tests_passed()
-		tests_failed = tests_failed + ts:tests_failed()
-		tests_elapsed = tests_elapsed + elapsed
-
-		if mode == "abort" then
-			if ts:tests_failed() > 0 then
-				break
-			end
-		elseif mode ~= "continue" then
-			error("bad sink mode for test " .. path)
-		end
-	end
+	output_tests(ts, path, elapsed)
+	tests_passed = tests_passed + ts:tests_passed()
+	tests_failed = tests_failed + ts:tests_failed()
+	tests_elapsed = tests_elapsed + elapsed
 end
 
 if tests_failed > 0 then
