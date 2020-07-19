@@ -10,7 +10,7 @@
 	- [ ] execution
 	- [ ] grammars
 - [x] test framework
-	- [ ] tests
+	- [x] tests
 - [ ] input_stream class
 	- [ ] tests
 - [ ] output_stream class
