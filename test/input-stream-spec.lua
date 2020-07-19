@@ -56,6 +56,23 @@ local function test_input_stream_pass_binary(self, istream, expected)
 	istream:close()
 end
 
+local function read_file(path, binary)
+	local file = assert(io.open(path, binary and "rb" or "r"))
+	local contents = {}
+
+	while true do
+		local read = assert(file:read("a"))
+
+		if #read > 0 then
+			table.insert(contents, read)
+		else
+			break
+		end
+	end
+
+	return table.concat(contents)
+end
+
 --- Test suite executor. The return value of this function dictates how testing progresses:
 ---  - a return value of `"continue"` continues test suite execution,
 ---  - a return value of `"abort"` aborts testing if there is any failed tests,
@@ -63,16 +80,29 @@ end
 --- @param self test_suite
 --- @return string
 return function(self)
-	test_input_stream_pass(self, input_stream.fromFile("resources/input-stream/pass.txt"), "\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n")
-	test_input_stream_pass(self, input_stream.fromBuffer("\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"), "\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n")
-	test_input_stream_pass_binary(self, input_stream.fromFile("resources/input-stream/pass-binary.txt", true), "\n\t123456\n\t\n")
-	test_input_stream_pass_binary(self, input_stream.fromBuffer("\n\t123456\n\t\n", true), "\n\t123456\n\t\n")
-	self:did_invoke_fail(input_stream.fromFile, "bad_file")
-	self:did_invoke_fail(input_stream.fromBuffer, 123)
+	test_input_stream_pass(
+		self,
+		input_stream.fromFile("resources/input-stream/pass.txt"),
+		read_file("resources/input-stream/pass.txt")
+	)
+
+	test_input_stream_pass_binary(
+		self,
+		input_stream.fromFile("resources/input-stream/pass-binary.txt", true),
+		read_file("resources/input-stream/pass-binary.txt", true)
+	)
+
+	local buffer1 = "\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"
+	local buffer2 = "\n\t123456\n\t\n"
+	test_input_stream_pass(self, input_stream.fromBuffer(buffer1), buffer1)
+	test_input_stream_pass_binary(self, input_stream.fromBuffer(buffer2, true), buffer2)
 
 	local istream = input_stream.fromFile("resources/input-stream/fail.txt")
 	self:did_invoke_fail(istream.peek, istream)
 	istream:close()
+
+	self:did_invoke_fail(input_stream.fromFile, "bad_file")
+	self:did_invoke_fail(input_stream.fromBuffer, 123)
 
 	return "abort"
 end

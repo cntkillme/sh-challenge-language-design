@@ -13,8 +13,8 @@
 	- [x] tests
 - [x] input_stream class
 	- [x] tests
-- [ ] output_stream class
-	- [ ] tests
+- [x] output_stream class
+	- [x] tests
 - [ ] symbol_table class
 	- [ ] tests
 - [ ] ast classes

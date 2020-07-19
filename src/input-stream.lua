@@ -15,7 +15,7 @@ function input_stream.new(path, file, binary)
 	return setmetatable({
 		_path = path,
 		_file = file,
-		_binary = binary == true,
+		_binary = binary,
 		_buffer = "",
 		_line = binary and 0 or 1,
 		_column = binary and 0 or 1,
@@ -47,7 +47,7 @@ function input_stream.fromBuffer(buffer, binary)
 
 	while idx <= #buffer do
 		assert(file:write(buffer:sub(idx, idx + 127)), "partial write!")
-		idx = idx + 128
+		idx = idx + 128 -- assume 128 characters written successfully
 	end
 
 	file:flush()
@@ -55,7 +55,7 @@ function input_stream.fromBuffer(buffer, binary)
 	return input_stream.new("<buffer>", file, binary)
 end
 
---- Closes the input stream.
+--- Closes the input_stream.
 function input_stream:close()
 	if self._file then
 		self._file:close()
