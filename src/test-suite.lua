@@ -8,7 +8,7 @@ local get_source
 local escape_char
 local prettify_table
 
---- Primary constructor.
+--- Creates a test_suite.
 --- @return test_suite
 function test_suite.new()
 	return setmetatable({
@@ -22,7 +22,6 @@ end
 ---  - a `value` of type `nil`, `boolean`, and `number` results in `tostring(value)`,
 ---  - a `value` of type `string` results in a string wrapped in double quotes with all double quotes and binary data escaped,
 ---  - a `value` of type `table` results in a string representing the table with array values prettified followed by dictionary pairs prettified in alphabetical order,
----  - a `value` of type `function` with a definite source results in `<function: name (namewhat) at source:linedefined>`,
 ---  - and any other `value` results in `<tostring(value)>`.
 --- @param value any
 --- @return string

@@ -2,7 +2,8 @@ package.path = "./src/?.lua;" .. package.path
 
 --- All the tests to run in the order specified.
 local spec = {
-	"test.test-suite"
+	"test.test-suite-spec",
+	"test.input-stream-spec"
 }
 
 local test_suite = require("test-suite");

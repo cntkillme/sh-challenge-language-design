@@ -11,8 +11,8 @@
 	- [ ] grammars
 - [x] test framework
 	- [x] tests
-- [ ] input_stream class
-	- [ ] tests
+- [x] input_stream class
+	- [x] tests
 - [ ] output_stream class
 	- [ ] tests
 - [ ] symbol_table class
