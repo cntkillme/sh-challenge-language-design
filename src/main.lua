@@ -7,6 +7,7 @@ local spec = {
 	"test.test-suite-spec",
 	"test.input-stream-spec",
 	"test.output-stream-spec",
+	"test.compiler.position-spec",
 	"test.compiler.symbol-table-spec"
 }
 

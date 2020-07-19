@@ -48,7 +48,7 @@ function symbol_table:get_binder(name, depth)
 end
 
 --- @class binder
---- @field node any
+--- @field node abstract_node
 --- @field previous binder | nil
 
 return symbol_table
