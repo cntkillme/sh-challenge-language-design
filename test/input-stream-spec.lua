@@ -92,7 +92,8 @@ return function(self)
 		read_file("resources/input-stream/pass-binary.txt", true)
 	)
 
-	local buffer1 = "\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"
+	local buffer1 =
+		"\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"
 	local buffer2 = "\n\t123456\n\t\n"
 	test_input_stream_pass(self, input_stream.fromBuffer(buffer1), buffer1)
 	test_input_stream_pass_binary(self, input_stream.fromBuffer(buffer2, true), buffer2)

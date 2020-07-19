@@ -11,10 +11,13 @@ jobs:
       with:
         luaVersion: "5.3"
     - uses: leafo/gh-actions-luarocks@v2
-    - name: build
+    - name: Install dependencies
       run: |
         luarocks install cluacov
+        luarocks install luacheck
+    - name: test
+      run: lua -lluacov src/main.lua
+    - name: luacheck
+      run: luacheck .
     - name: codecov
-      run: |
-        lua -lluacov test/main.lua
-        bash <(curl -s https://codecov.io/bash)
+      run: bash <(curl -s https://codecov.io/bash)
