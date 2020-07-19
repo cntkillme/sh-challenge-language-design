@@ -17,6 +17,8 @@
 	- [x] tests
 - [x] symbol_table class
 	- [x] tests
+- [x] position class
+	- [x] tests
 - [ ] ast classes
 	- [ ] abstract_node class
 	- [ ] program class
