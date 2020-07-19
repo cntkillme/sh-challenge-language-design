@@ -1,0 +1,35 @@
+(** SHLang Grammar Overview
+ * The syntax of SHLang is described here (using a variant of EBNF) with the following exceptions:
+ *   - Comment syntax is not described (see compiler specification §1.5).
+ *   - Identifiers and keywords are not separated (see compiler specification §1.1 and §1.2).
+ *   - Operator precedence and associativity is not described (see compiler specification ???).
+ *   - Required and optional whitespace usage is not described (see compiler specification §1.4).
+**)
+
+program = {statement} "return" expression;
+
+statement =  function_definition | variable_definition | variable_assignment | function_call;
+
+function_definition = "let" identifier '(' [{identifier ','} identifier] ')' '=' expression;
+
+variable_definition = "let" identifier ['=' expression];
+
+variable_assignment = identifier '=' expression;
+
+expression = unary_expression | binary_expression | primary_expression;
+
+unary_expression = ('$' | '-') expression;
+
+binary_expression = expression ('+' | '-' | '*' | '/' | '%' | '^') expression;
+
+primary_expression = number | identifier | function_call | '(' expression ')';
+
+function_call = identifier '(' [{expression ','} expression] ')';
+
+number = digit {digit} ['.' {digit}];
+
+identifier = (letter | '_') {(letter | digit | '_')};
+
+digit = ? 0-9 ?;
+
+letter = ? a-zA-Z ?;
