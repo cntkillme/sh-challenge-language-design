@@ -9,7 +9,7 @@ The user is to implement a compiler and an interpreter for SHLang.
 The use of lexer/parser generation tools or the usage of another user's submission is prohibited.
 
 ## Testing
-In the project's root directory, invoke Lua 5.3 to run the file `test/main.lua`.
+In the project's root directory, invoke Lua 5.3 to run the file `src/main.lua`.
 
 ## Contributing
 The user may file an issue for the following reasons:

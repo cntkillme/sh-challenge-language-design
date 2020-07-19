@@ -1,10 +1,13 @@
+-- luacov: disable
+
 package.path = "./src/?.lua;" .. package.path
 
 --- All the tests to run in the order specified.
 local spec = {
 	"test.test-suite-spec",
 	"test.input-stream-spec",
-	"test.output-stream-spec"
+	"test.output-stream-spec",
+	"test.compiler.symbol-table-spec"
 }
 
 local test_suite = require("test-suite");
@@ -72,3 +75,5 @@ else
 	print(COLOR_PASS .. "*** all tests passed! ***" .. COLOR_RESET)
 	os.exit(0)
 end
+
+-- luacov: enable

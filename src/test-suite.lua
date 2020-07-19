@@ -77,7 +77,7 @@ end
 --- Tests an expression and returns it.
 --- @param cond any
 --- @param message string | nil
---- @returns any
+--- @return any
 function test_suite:assert(cond, message)
 	if cond then
 		self:pass()
