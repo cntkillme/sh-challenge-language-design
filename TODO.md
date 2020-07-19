@@ -9,7 +9,7 @@
 	- [ ] statements
 	- [ ] execution
 	- [ ] grammars
-- [ ] test framework
+- [x] test framework
 	- [ ] tests
 - [ ] input_stream class
 	- [ ] tests
