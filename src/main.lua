@@ -9,7 +9,8 @@ local spec = {
 	"test.output-stream-spec",
 	"test.compiler.position-spec",
 	"test.compiler.symbol-table-spec",
-	"test.compiler.ast.abstract-node-spec"
+	"test.compiler.ast.abstract-node-spec",
+	"test.compiler.ast.number-literal-spec"
 }
 
 local test_suite = require("test-suite");

@@ -20,7 +20,8 @@
 - [x] position class
 	- [x] tests
 - [ ] ast classes
-	- [ ] abstract_node class
+	- [x] abstract_node class
+		- [x] tests
 	- [ ] program class
 	- [ ] variable_definition class
 	- [ ] function_definition class
@@ -29,7 +30,8 @@
 	- [ ] binary_expression class
 	- [ ] unary_expression class
 	- [ ] identifier class
-	- [ ] number_literal class
+	- [x] number_literal class
+		- [x] tests
 	- [ ] tests
 - [ ] visitor classes
 	- [ ] abstract_visitor class
