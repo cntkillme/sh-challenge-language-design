@@ -15,8 +15,8 @@
 	- [x] tests
 - [x] output_stream class
 	- [x] tests
-- [ ] symbol_table class
-	- [ ] tests
+- [x] symbol_table class
+	- [x] tests
 - [ ] ast classes
 	- [ ] abstract_node class
 	- [ ] program class
