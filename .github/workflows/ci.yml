@@ -1,0 +1,20 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: leafo/gh-actions-lua@v5
+      with:
+        luaVersion: "5.3"
+    - uses: leafo/gh-actions-luarocks@v2
+    - name: build
+      run: |
+        luarocks install cluacov
+    - name: codecov
+      run: |
+        lua -lluacov test/main.lua
+        bash <(curl -s https://codecov.io/bash)
