@@ -5,7 +5,8 @@
 An overview of the SHLang specification can be seen [here](doc/contents.md).
 
 ## Requirements
-The user is to implement a compiler and an interpreter for SHLang.
+The user is to implement a compiler and an interpreter for SHLang. Specifically, the parser and an SHLang virtual machine must be implemented. Various utilities and classes are already provided and the user is expected to make use of them.
+
 The use of lexer/parser generation tools or the usage of another user's submission is prohibited.
 
 ## Testing

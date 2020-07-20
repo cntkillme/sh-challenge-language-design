@@ -1,7 +1,8 @@
 local abstract_node = require("compiler.ast.abstract-node")
 
+--- The number literal AST node.
 --- @class number_literal : abstract_node
-local number_literal = setmetatable({}, {__index = abstract_node})
+local number_literal = setmetatable({}, { __index = abstract_node })
 number_literal.__index = number_literal
 
 --- Creates a number_literal AST node.

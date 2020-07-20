@@ -7,7 +7,7 @@ symbol_table.__index = symbol_table
 --- @return symbol_table
 function symbol_table.new()
 	return setmetatable({
-		_binders = {},
+		_symbols = {},
 		_previous = nil
 	}, symbol_table)
 end
@@ -15,40 +15,46 @@ end
 --- Opens a new scope.
 function symbol_table:open_scope()
 	local st = symbol_table.new()
-	st._binders = self._binders
+	st._symbols = self._symbols
 	st._previous = self._previous
-	self._binders = {}
+	self._symbols = {}
 	self._previous = st
 end
 
 --- Closes the current scope.
 function symbol_table:close_scope()
 	assert(self._previous, "symbol_table::close_scope(): no parent scope!")
-	self._binders, self._previous = self._previous._binders, self._previous._previous
+	self._symbols, self._previous = self._previous._symbols, self._previous._previous
 end
 
-function symbol_table:bind_identifier(name, node)
-	assert(not self._binders[name], "symbol_table::bind_identifier(): identifier " .. name .. " already binded!")
-	self._binders[name] = { node = node, previous = self._previous and self._previous[name] or nil }
+--- Creates a new symbol.
+--- @param name string
+--- @param node abstract_node
+--- @return symbol
+function symbol_table:bind_symbol(name, node)
+	assert(not self._symbols[name], "symbol_table::bind_symbol(): symbol " .. name .. " already binded!")
+	local symbol = { node = node, previous = self._previous and self._previous[name] or nil }
+	self._symbols[name] = symbol
+	return symbol
 end
 
---- Returns the binder by the given name.
+--- Returns the symbol by the given name.
 --- @param name string
 --- @param depth integer | nil
---- @return binder
-function symbol_table:get_binder(name, depth)
-	local binder = self._binders[name]
+--- @return symbol
+function symbol_table:symbol(name, depth)
+	local symbol = self._symbols[name]
 	depth = depth or math.huge
 
-	if not binder and self._previous and depth > 0 then
-		return self._previous:get_binder(name, depth - 1)
+	if not symbol and self._previous and depth > 0 then
+		return self._previous:symbol(name, depth - 1)
 	end
 
-	return binder
+	return symbol
 end
 
---- @class binder
+--- @class symbol
 --- @field node abstract_node
---- @field previous binder | nil
+--- @field previous symbol | nil
 
 return symbol_table
