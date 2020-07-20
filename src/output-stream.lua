@@ -26,7 +26,7 @@ end
 --- @param path string
 --- @param binary boolean | nil
 --- @return output_stream
-function output_stream.fromFile(path, binary)
+function output_stream.from_file(path, binary)
 	local mode = binary and "wb" or "w"
 	local file = assert(io.open(path, mode))
 	file:setvbuf("full", BUFFER_SIZE)
@@ -36,7 +36,7 @@ end
 --- Creates an output_stream using stdout.
 --- @param binary boolean | nil
 --- @return output_stream
-function output_stream.fromStdout(binary)
+function output_stream.from_stdout(binary)
 	return output_stream.new("<stdout>", io.stdout, binary)
 end
 

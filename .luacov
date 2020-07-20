@@ -8,6 +8,7 @@ return {
 	codefromstrings = false,
 	include = { "src/" },
 	exclude = {
+		"src/main",
 		"luacov$",
 		"luacov/reporter$",
 		"luacov/defaults$",

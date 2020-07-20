@@ -77,26 +77,25 @@ end
 return function(self)
 	test_input_stream_pass(
 		self,
-		input_stream.fromFile("resources/input-stream/pass.txt"),
+		input_stream.from_file("resources/input-stream/pass.txt"),
 		read_file("resources/input-stream/pass.txt")
 	)
 
 	test_input_stream_pass_binary(
 		self,
-		input_stream.fromFile("resources/input-stream/pass-binary.txt", true),
+		input_stream.from_file("resources/input-stream/pass-binary.txt", true),
 		read_file("resources/input-stream/pass-binary.txt", true)
 	)
 
 	local buffer1 =
 		"\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"
-	local buffer2 = "\n\t123456\n\t\n"
-	test_input_stream_pass(self, input_stream.fromBuffer(buffer1), buffer1)
-	test_input_stream_pass_binary(self, input_stream.fromBuffer(buffer2, true), buffer2)
 
-	local istream = input_stream.fromFile("resources/input-stream/fail.txt")
+	local buffer2 = "\n\t123456\n\t\n"
+	test_input_stream_pass(self, input_stream.from_buffer(buffer1), buffer1)
+	test_input_stream_pass_binary(self, input_stream.from_buffer(buffer2, true), buffer2)
+	local istream = input_stream.from_file("resources/input-stream/fail.txt")
 	self:did_invoke_fail(istream.peek, istream)
 	istream:close()
-
-	self:did_invoke_fail(input_stream.fromFile, "bad_file")
-	self:did_invoke_fail(input_stream.fromBuffer, 123)
+	self:did_invoke_fail(input_stream.from_file, "bad_file")
+	self:did_invoke_fail(input_stream.from_buffer, 123)
 end

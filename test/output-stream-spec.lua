@@ -62,30 +62,31 @@ end
 return function(self)
 	test_output_stream_pass(
 		self,
-		output_stream.fromFile("resources/output-stream/pass.txt"),
+		output_stream.from_file("resources/output-stream/pass.txt"),
 		read_file("resources/output-stream/pass.txt")
 	)
 
 	test_output_stream_pass_binary(
 		self,
-		output_stream.fromFile("resources/output-stream/pass-binary.txt", true),
+		output_stream.from_file("resources/output-stream/pass-binary.txt", true),
 		read_file("resources/output-stream/pass-binary.txt", true)
 	)
 
 	local buffer1 =
 		"\n\t !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\n"
+
 	local buffer2 = "\n\t123456\n\t\n"
 
 	do
 		-- redirect stdout
 		local stdout = io.stdout
 		io.stdout = io.tmpfile() -- luacheck: ignore
-		test_output_stream_pass(self, output_stream.fromStdout(), buffer1)
-		test_output_stream_pass_binary(self, output_stream.fromStdout(true), buffer2)
+		test_output_stream_pass(self, output_stream.from_stdout(), buffer1)
+		test_output_stream_pass_binary(self, output_stream.from_stdout(true), buffer2)
 		io.stdout = stdout  -- luacheck: ignore
 	end
 
-	local ostream = output_stream.fromFile("resources/output-stream/fail.txt")
+	local ostream = output_stream.from_file("resources/output-stream/fail.txt")
 	self:did_invoke_fail(ostream.write, ostream, "\1\2")
 	ostream:close()
 end

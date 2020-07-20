@@ -7,7 +7,6 @@ return function(self)
 	self:is_equal(self:tests_failed(), 0)
 	self:is_equal(#self:tests(), 3)
 	self:pass();
-
 	local ts = test_suite.new()
 	ts:fail();
 	ts:did_invoke_pass(type)
@@ -20,7 +19,6 @@ return function(self)
 	ts:is_equal("abc\r\n\t\0\'\"", "abc")
 	ts:is_equal(setmetatable({}, {}), setmetatable({}, {}))
 	self:is_equal(ts:tests_failed(), 10)
-
 	self:did_invoke_pass(tonumber, "123")
 	self:did_invoke_fail(type)
 	self:not_equal(self:tests(), {});

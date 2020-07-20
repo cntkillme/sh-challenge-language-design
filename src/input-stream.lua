@@ -3,7 +3,7 @@
 local input_stream = {}
 input_stream.__index = input_stream
 
--- constants
+-- Constants
 local BUFFER_SIZE = 1024 -- in bytes
 
 --- Creates an input_stream given a path and file, and the stream becomes the new owner of the file.
@@ -28,7 +28,7 @@ end
 --- @param path string
 --- @param binary boolean | nil
 --- @return input_stream
-function input_stream.fromFile(path, binary)
+function input_stream.from_file(path, binary)
 	local mode = binary and "rb" or "r"
 	local file = assert(io.open(path, mode))
 	return input_stream.new(path, file, binary)
@@ -38,7 +38,7 @@ end
 --- @param buffer string
 --- @param binary boolean | nil
 --- @return input_stream
-function input_stream.fromBuffer(buffer, binary)
+function input_stream.from_buffer(buffer, binary)
 	local file = assert(io.tmpfile())
 	local idx = 1
 
@@ -85,7 +85,7 @@ function input_stream:peek()
 	local char = self._buffer:sub(self:_buffer_index(), self:_buffer_index())
 
 	if not self._binary then
-		-- ensure character is in the SHLang character set
+		-- Ensure the character is in the SHLang character set.
 		if not (char == "\t" or char == "\n" or (char:byte() >= 32 and char:byte() <= 126)) then
 			self:error(("unexpected symbol \\x%.2X"):format(char:byte()))
 		end
@@ -140,8 +140,6 @@ function input_stream:position()
 	return self._position
 end
 
--- luacov: disable
-
 function input_stream:_buffer_index()
 	return 1 + (self._position % BUFFER_SIZE)
 end
@@ -149,21 +147,17 @@ end
 function input_stream:_check_buffer()
 	assert(self._file, "input_stream is not opened")
 
-	-- buffer needs to be updated
-	if self._position % BUFFER_SIZE == 0 and self._position ~= self._last_position then
+	if self._position % BUFFER_SIZE == 0 and self._position ~= self._last_position then -- update buffer
 		self._buffer = self._file:read(BUFFER_SIZE)
 		self._last_position = self._position
 	end
 
-	-- eof reached
-	if not self._buffer or #self._buffer == 0 or self:_buffer_index() > #self._buffer then
+	if not self._buffer or #self._buffer == 0 or self:_buffer_index() > #self._buffer then -- eof reached
 		self._buffer = nil
 		return false
 	end
 
 	return true
 end
-
--- luacov: enable
 
 return input_stream

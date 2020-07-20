@@ -149,6 +149,7 @@ end
 
 --- Tests if a call completed without errors and returns the error or function's return values.
 --- @param callable any
+--- @vararg any
 --- @return boolean
 --- @return any
 function test_suite:did_invoke_pass(callable, ...)
@@ -179,8 +180,6 @@ function test_suite:did_invoke_fail(callable, ...)
 	return table.unpack(values, 1, values.n)
 end
 
--- luacov: disable
-
 local info = debug.getinfo(1)
 
 --- @return string
@@ -195,7 +194,7 @@ function get_source()
 		end
 	end
 
-	return "none"
+	return "none" -- luacov: disable
 end
 
 --- @param char string
@@ -214,7 +213,7 @@ function escape_char(char, quote)
 		return "\\t"
 	elseif char:match("%c") then
 		return "\\x" .. string.format("%.2X", char:byte())
-	else
+	else -- luacov: disable
 		return char
 	end
 end
@@ -266,7 +265,5 @@ function prettify_table(tbl, depth, seen)
 	table.insert(chunk, "\n" .. ("\t"):rep(depth - 1) .. "}")
 	return table.concat(chunk)
 end
-
--- luacov: enable
 
 return test_suite

@@ -1,28 +1,28 @@
--- luacov: disable
-
 package.path = "./src/?.lua;" .. package.path
+local test_suite = require("test-suite");
+
+--- Constants
+local COLOR_PASS = "\27[32m"
+local COLOR_FAIL = "\27[31m"
+local COLOR_INFO = "\27[34m"
+local COLOR_RESET = "\27[0m"
+
+--- Test results
+local tests_passed = 0
+local tests_failed = 0
+local tests_elapsed = 0
 
 --- All the tests to run in the order specified.
 local spec = {
 	"test.test-suite-spec",
 	"test.input-stream-spec",
 	"test.output-stream-spec",
-	"test.compiler.position-spec",
+	"test.compiler.region-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
 	"test.compiler.ast.identifier-spec",
 	"test.compiler.ast.number-literal-spec"
 }
-
-local test_suite = require("test-suite");
-local tests_passed = 0
-local tests_failed = 0
-local tests_elapsed = 0
-
-local COLOR_PASS = "\27[32m"
-local COLOR_FAIL = "\27[31m"
-local COLOR_INFO = "\27[34m"
-local COLOR_RESET = "\27[0m"
 
 local function output_tests(ts, path, elapsed)
 	print(("%s%s%s (%s%d/%d passed%s, %.3f s)"):format(
@@ -69,5 +69,3 @@ else
 	print(COLOR_PASS .. "*** all tests passed! ***" .. COLOR_RESET)
 	os.exit(0)
 end
-
--- luacov: enable

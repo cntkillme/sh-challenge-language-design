@@ -1,9 +1,17 @@
---- TODO: remove alias
+--- TODO: remove the following aliases:
 --- @alias abstract_visitor any
+--- @alias variable_definition any
+--- @alias function_definition any
+--- @alias variable_assignment any
+--- @alias binary_expression any
+--- @alias call_expression any
+
+--- @alias statement variable_definition | function_definition | variable_assignment
+--- @alias expression binary_expression | unary_expression | call_expression | identifier | number_literal
 
 --- Abstract AST node class.
 --- @class abstract_node
---- @field public position position | nil
+--- @field public region region
 local abstract_node = {}
 abstract_node.__index = abstract_node
 

@@ -7,12 +7,12 @@ number_literal.__index = number_literal
 
 --- Creates a number_literal AST node.
 --- @param lexeme string
---- @param position position
+--- @param region region
 --- @return number_literal
-function number_literal.new(lexeme, position)
+function number_literal.new(lexeme, region)
 	return setmetatable({
 		lexeme = lexeme,
-		position = position
+		region = region
 	}, number_literal)
 end
 
