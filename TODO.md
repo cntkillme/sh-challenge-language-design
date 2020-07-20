@@ -29,7 +29,8 @@
 	- [ ] call_expression class
 	- [ ] binary_expression class
 	- [ ] unary_expression class
-	- [ ] identifier class
+	- [x] identifier class
+		- [x] tests
 	- [x] number_literal class
 		- [x] tests
 	- [ ] tests

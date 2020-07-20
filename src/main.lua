@@ -10,6 +10,7 @@ local spec = {
 	"test.compiler.position-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
+	"test.compiler.ast.identifier-spec",
 	"test.compiler.ast.number-literal-spec"
 }
 
