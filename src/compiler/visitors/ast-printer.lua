@@ -1,4 +1,4 @@
---- Abstract AST visitor class.
+--- AST printer class.
 --- @class ast_printer
 local ast_printer = {}
 ast_printer.__index = ast_printer
@@ -7,10 +7,7 @@ ast_printer.__index = ast_printer
 --- @param addParentheses boolean | nil
 --- @return ast_printer
 function ast_printer.new(addParentheses)
-	return setmetatable({
-		_content = {},
-		_add_parentheses = addParentheses == true
-	}, ast_printer)
+	return setmetatable({ _content = {}, _add_parentheses = addParentheses == true }, ast_printer)
 end
 
 --- Returns the content.

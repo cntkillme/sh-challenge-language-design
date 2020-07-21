@@ -11,6 +11,7 @@ identifier.__index = identifier
 --- @return identifier
 function identifier.new(lexeme, region)
 	return setmetatable({
+		--- @type symbol | nil
 		symbol = nil,
 		lexeme = lexeme,
 		region = region

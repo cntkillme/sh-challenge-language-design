@@ -6,10 +6,7 @@ symbol_table.__index = symbol_table
 --- Creates a symbol_table.
 --- @return symbol_table
 function symbol_table.new()
-	return setmetatable({
-		_symbols = {},
-		_previous = nil
-	}, symbol_table)
+	return setmetatable({ _symbols = {}, _previous = nil }, symbol_table)
 end
 
 --- Opens a new scope.

@@ -11,11 +11,7 @@ local prettify_table
 --- Creates a test_suite.
 --- @return test_suite
 function test_suite.new()
-	return setmetatable({
-		_tests = {},
-		_passed = 0,
-		_failed = 0
-	}, test_suite)
+	return setmetatable({ _tests = {}, _passed = 0, _failed = 0 }, test_suite)
 end
 
 --- Returns a readable string for values in the following manner:
@@ -45,7 +41,7 @@ function test_suite.prettify(value, _depth, _seen)
 end
 
 --- Returns the test results.
---- @return table
+--- @return test_result[]
 function test_suite:tests()
 	return self._tests
 end
@@ -178,6 +174,12 @@ function test_suite:did_invoke_fail(callable, ...)
 
 	return table.unpack(values, 1, values.n)
 end
+
+--- A test result.
+--- @class test_result
+--- @field public passed boolean
+--- @field public message string
+--- @field public source string
 
 local info = debug.getinfo(1)
 

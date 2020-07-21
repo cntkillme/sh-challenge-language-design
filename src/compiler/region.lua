@@ -15,14 +15,7 @@ local region = {}
 --- Creates an identity region.
 --- @return region
 function region.identity()
-	return {
-		first_line = 1,
-		last_line = 1,
-		first_column = 1,
-		last_column = 1,
-		first_position = 0,
-		last_position = 0
-	}
+	return { first_line = 1, last_line = 1, first_column = 1, last_column = 1, first_position = 0, last_position = 0 }
 end
 
 --- Creates a region from a lexeme and an origin. The lexeme cannot be empty or end with a line feed.

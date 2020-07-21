@@ -12,12 +12,7 @@ function_definition.__index = function_definition
 --- @param region region | nil
 --- @return function_definition
 function function_definition.new(name, parameters, body, region)
-	return setmetatable({
-		name = name,
-		parameters = parameters,
-		body = body,
-		region = region
-	}, function_definition)
+	return setmetatable({ name = name, parameters = parameters, body = body, region = region }, function_definition)
 end
 
 --- Returns whether or not the node is a statement.

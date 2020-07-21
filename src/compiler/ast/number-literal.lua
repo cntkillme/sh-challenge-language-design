@@ -10,10 +10,7 @@ number_literal.__index = number_literal
 --- @param region region | nil
 --- @return number_literal
 function number_literal.new(lexeme, region)
-	return setmetatable({
-		lexeme = lexeme,
-		region = region
-	}, number_literal)
+	return setmetatable({ lexeme = lexeme, region = region }, number_literal)
 end
 
 --- Returns whether or not the lexeme is a valid number.

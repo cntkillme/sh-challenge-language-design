@@ -11,11 +11,7 @@ call_expression.__index = call_expression
 --- @param region region | nil
 --- @return call_expression
 function call_expression.new(target, arguments, region)
-	return setmetatable({
-		target = target,
-		arguments = arguments,
-		region = region
-	}, call_expression)
+	return setmetatable({ target = target, arguments = arguments, region = region }, call_expression)
 end
 
 --- Returns whether or not the node is a statement.

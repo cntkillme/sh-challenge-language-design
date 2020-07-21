@@ -11,11 +11,7 @@ variable_definition.__index = variable_definition
 --- @param region region | nil
 --- @return variable_definition
 function variable_definition.new(name, expression, region)
-	return setmetatable({
-		name = name,
-		expression = expression,
-		region = region
-	}, variable_definition)
+	return setmetatable({ name = name, expression = expression, region = region }, variable_definition)
 end
 
 --- Returns whether or not the node is a statement.

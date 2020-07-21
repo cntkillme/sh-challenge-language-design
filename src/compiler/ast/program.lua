@@ -11,11 +11,7 @@ program.__index = program
 --- @param region region | nil
 --- @return program
 function program.new(statements, returns, region)
-	return setmetatable({
-		statements = statements,
-		returns = returns,
-		region = region
-	}, program)
+	return setmetatable({ statements = statements, returns = returns, region = region }, program)
 end
 
 --- Returns whether or not the node is a statement.

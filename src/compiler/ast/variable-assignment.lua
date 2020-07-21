@@ -11,11 +11,7 @@ variable_assignment.__index = variable_assignment
 --- @param region region | nil
 --- @return variable_assignment
 function variable_assignment.new(target, expression, region)
-	return setmetatable({
-		target = target,
-		expression = expression,
-		region = region
-	}, variable_assignment)
+	return setmetatable({ target = target, expression = expression, region = region }, variable_assignment)
 end
 
 --- Returns whether or not the node is a statement.

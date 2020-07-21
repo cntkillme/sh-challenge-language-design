@@ -11,11 +11,7 @@ unary_expression.__index = unary_expression
 --- @param region region | nil
 --- @return unary_expression
 function unary_expression.new(operand, operator, region)
-	return setmetatable({
-		operand = operand,
-		operator = operator,
-		region = region
-	}, unary_expression)
+	return setmetatable({ operand = operand, operator = operator, region = region }, unary_expression)
 end
 
 --- Returns whether or not the operator is a valid unary operator.
