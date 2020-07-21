@@ -21,7 +21,7 @@ end
 --- Returns whether or not the lexeme is a valid identifier name.
 --- @param lexeme string
 --- @return boolean
-function identifier.valid_lexeme(lexeme)
+function identifier.valid_identifier(lexeme)
 	return lexeme:match("^%a%w*$") ~= nil
 end
 

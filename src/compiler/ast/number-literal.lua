@@ -16,7 +16,7 @@ end
 --- Returns whether or not the lexeme is a valid number.
 --- @param lexeme string
 --- @return boolean
-function number_literal.valid_lexeme(lexeme)
+function number_literal.valid_number(lexeme)
 	return (lexeme:match("^%d+$") or lexeme:match("^%d+%.%d+$")) ~= nil
 end
 

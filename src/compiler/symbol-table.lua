@@ -29,7 +29,6 @@ end
 --- @param node abstract_node
 --- @return symbol
 function symbol_table:bind_symbol(name, node)
-	assert(not self._symbols[name], "symbol_table::bind_symbol(): symbol " .. name .. " already binded!")
 	local symbol = { node = node, previous = self._previous and self._previous[name] or nil }
 	self._symbols[name] = symbol
 	return symbol
