@@ -1,4 +1,3 @@
-local region = require("compiler.region")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The unary expression AST node.
@@ -9,12 +8,13 @@ unary_expression.__index = unary_expression
 --- Creates a unary_expression AST node.
 --- @param operand expression
 --- @param operator string
+--- @param region region | nil
 --- @return unary_expression
-function unary_expression.new(operand, operator)
+function unary_expression.new(operand, operator, region)
 	return setmetatable({
 		operand = operand,
 		operator = operator,
-		region = region.transform_left(operand.region, region.from_lexeme(operator))
+		region = region
 	}, unary_expression)
 end
 

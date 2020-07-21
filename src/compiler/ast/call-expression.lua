@@ -1,4 +1,3 @@
-local region = require("compiler.region")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The call expression AST node.
@@ -9,13 +8,13 @@ call_expression.__index = call_expression
 --- Creates a new call_expression AST node.
 --- @param target identifier
 --- @param arguments expression[]
---- @param closeParenRegion region
+--- @param region region | nil
 --- @return call_expression
-function call_expression.new(target, arguments, closeParenRegion)
+function call_expression.new(target, arguments, region)
 	return setmetatable({
 		target = target,
 		arguments = arguments,
-		region = region.extend(target.region, closeParenRegion)
+		region = region
 	}, call_expression)
 end
 

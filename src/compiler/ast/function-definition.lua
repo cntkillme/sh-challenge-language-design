@@ -1,7 +1,6 @@
-local region = require("compiler.region")
 local abstract_node = require("compiler.ast.abstract-node")
 
---- The call expression AST node.
+--- The function definition AST node.
 --- @class function_definition : abstract_node
 local function_definition = setmetatable({}, { __index = abstract_node })
 function_definition.__index = function_definition
@@ -10,13 +9,14 @@ function_definition.__index = function_definition
 --- @param name identifier
 --- @param parameters identifier[]
 --- @param body expression
+--- @param region region | nil
 --- @return function_definition
-function function_definition.new(name, parameters, body)
+function function_definition.new(name, parameters, body, region)
 	return setmetatable({
 		name = name,
 		parameters = parameters,
 		body = body,
-		region = region.extend(name.region, body.region)
+		region = region
 	}, function_definition)
 end
 

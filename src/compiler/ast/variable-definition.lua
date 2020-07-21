@@ -1,4 +1,3 @@
-local region = require("compiler.region")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The binary expression AST node.
@@ -9,13 +8,13 @@ variable_definition.__index = variable_definition
 --- Creates a variable_definition AST node.
 --- @param name identifier
 --- @param expression expression | nil
---- @param letRegion region
+--- @param region region | nil
 --- @return variable_definition
-function variable_definition.new(name, expression, letRegion)
+function variable_definition.new(name, expression, region)
 	return setmetatable({
 		name = name,
 		expression = expression,
-		region = region.extend(letRegion, expression and expression.region or name.region)
+		region = region
 	}, variable_definition)
 end
 
