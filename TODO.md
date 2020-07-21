@@ -23,7 +23,8 @@
 	- [x] abstract_node class
 		- [x] tests
 	- [ ] program class
-	- [ ] variable_definition class
+	- [x] variable_definition class
+		- [x] tests
 	- [x] function_definition class
 		- [x] tests
 	- [x] variable_assignment class

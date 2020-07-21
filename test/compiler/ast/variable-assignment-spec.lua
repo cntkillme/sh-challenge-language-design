@@ -44,16 +44,9 @@ return function(self)
 						"-"
 					)
 				)
-			}, {
-				--
-				--                              )
-				first_line = 2,
-				last_line = 2,
-				first_column = 30,
-				last_column = 30,
-				first_position = 35,
-				last_position = 35
-			}
+			},
+			--                              )
+			region.from_lexeme(")", 2, 30, 35)
 		)
 	)
 
