@@ -1,7 +1,6 @@
 --- TODO: remove the following aliases:
 --- @alias abstract_visitor any
 --- @alias variable_definition any
---- @alias function_definition any
 
 --- @alias statement variable_definition | function_definition | variable_assignment
 --- @alias expression binary_expression | unary_expression | call_expression | identifier | number_literal

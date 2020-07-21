@@ -58,7 +58,6 @@ return function(self)
 	)
 
 	self:is_equal(node:kind(), variable_assignment)
-	self:is_equal(node.target:kind(), identifier)
 	self:is_truthy(node:is_statement())
 	self:is_falsy(node:is_expression())
 

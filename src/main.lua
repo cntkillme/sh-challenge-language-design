@@ -20,12 +20,13 @@ local spec = {
 	"test.compiler.region-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
-	"test.compiler.ast.variable-assignment-spec",
-	"test.compiler.ast.call-expression-spec",
-	"test.compiler.ast.binary-expression-spec",
-	"test.compiler.ast.unary-expression-spec",
+	"test.compiler.ast.number-literal-spec",
 	"test.compiler.ast.identifier-spec",
-	"test.compiler.ast.number-literal-spec"
+	"test.compiler.ast.unary-expression-spec",
+	"test.compiler.ast.binary-expression-spec",
+	"test.compiler.ast.call-expression-spec",
+	"test.compiler.ast.variable-assignment-spec",
+	"test.compiler.ast.function-definition-spec",
 }
 
 local function output_tests(ts, path, elapsed)

@@ -41,7 +41,6 @@ return function(self)
 	)
 
 	self:is_equal(node:kind(), call_expression)
-	self:is_equal(node.target:kind(), identifier)
 	self:is_falsy(node:is_statement())
 	self:is_truthy(node:is_expression())
 

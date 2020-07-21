@@ -24,7 +24,8 @@
 		- [x] tests
 	- [ ] program class
 	- [ ] variable_definition class
-	- [ ] function_definition class
+	- [x] function_definition class
+		- [x] tests
 	- [x] variable_assignment class
 		- [x] tests
 	- [x] call_expression class
