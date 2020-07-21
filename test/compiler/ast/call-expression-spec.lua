@@ -37,11 +37,12 @@ return function(self)
 			last_column = 30,
 			first_position = 29,
 			last_position = 29
-		})
+		}
+	)
 
 	self:is_equal(node:kind(), call_expression)
 	self:is_equal(node.target:kind(), identifier)
-	self:is_truthy(node:is_statement())
+	self:is_falsy(node:is_statement())
 	self:is_truthy(node:is_expression())
 
 	self:is_equal(node.region, {

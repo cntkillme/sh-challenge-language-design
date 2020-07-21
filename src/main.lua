@@ -20,9 +20,9 @@ local spec = {
 	"test.compiler.region-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
-	"test.compiler.ast.call-expression",
-	"test.compiler.ast.binary-expression",
-	"test.compiler.ast.unary-expression",
+	"test.compiler.ast.call-expression-spec",
+	"test.compiler.ast.binary-expression-spec",
+	"test.compiler.ast.unary-expression-spec",
 	"test.compiler.ast.identifier-spec",
 	"test.compiler.ast.number-literal-spec"
 }

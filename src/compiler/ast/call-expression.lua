@@ -22,7 +22,7 @@ end
 --- Returns whether or not the node is a statement.
 --- @return boolean
 function call_expression:is_statement()
-	return true
+	return false
 end
 
 --- Returns whether or not the node is an expression.
