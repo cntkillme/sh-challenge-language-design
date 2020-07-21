@@ -22,7 +22,8 @@
 - [x] ast classes
 	- [x] tests
 - [ ] visitor classes
-	- [ ] abstract_visitor class
+	- [x] abstract_visitor class
+		- [x] tests
 	- [ ] ast_printer class
 	- [ ] ast_constrainer class
 	- [ ] ast_codegen class
