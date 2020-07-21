@@ -149,7 +149,6 @@ end
 
 --- Tests if a call completed without errors and returns the error or function's return values.
 --- @param callable any
---- @vararg any
 --- @return boolean
 --- @return any
 function test_suite:did_invoke_pass(callable, ...)

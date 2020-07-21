@@ -20,6 +20,7 @@ local spec = {
 	"test.compiler.region-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
+	"test.compiler.ast.unary-expression",
 	"test.compiler.ast.identifier-spec",
 	"test.compiler.ast.number-literal-spec"
 }
@@ -48,7 +49,7 @@ local function output_tests(ts, path, elapsed)
 	end
 end
 
--- Run tests.
+-- Run tests
 for _, path in ipairs(spec) do
 	local ts = test_suite.new()
 	local tester = require(path)
