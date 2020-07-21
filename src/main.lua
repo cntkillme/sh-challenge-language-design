@@ -27,7 +27,8 @@ local spec = {
 	"test.compiler.ast.call-expression-spec",
 	"test.compiler.ast.variable-assignment-spec",
 	"test.compiler.ast.function-definition-spec",
-	"test.compiler.ast.variable-definition-spec"
+	"test.compiler.ast.variable-definition-spec",
+	"test.compiler.ast.program-spec"
 }
 
 local function output_tests(ts, path, elapsed)

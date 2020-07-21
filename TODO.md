@@ -19,27 +19,8 @@
 	- [x] tests
 - [x] region class
 	- [x] tests
-- [ ] ast classes
-	- [x] abstract_node class
-		- [x] tests
-	- [ ] program class
-	- [x] variable_definition class
-		- [x] tests
-	- [x] function_definition class
-		- [x] tests
-	- [x] variable_assignment class
-		- [x] tests
-	- [x] call_expression class
-		- [x] tests
-	- [x] binary_expression class
-		- [x] tests
-	- [x] unary_expression class
-		- [x] tests
-	- [x] identifier class
-		- [x] tests
-	- [x] number_literal class
-		- [x] tests
-	- [ ] tests
+- [x] ast classes
+	- [x] tests
 - [ ] visitor classes
 	- [ ] abstract_visitor class
 	- [ ] ast_printer class
