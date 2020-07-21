@@ -70,9 +70,9 @@ for _, path in ipairs(spec) do
 end
 
 if tests_failed > 0 then
-	print(COLOR_FAIL .. "*** " .. tests_failed .. " failed tests! ***" .. COLOR_RESET .. (" (%.3f s)"):format(tests_elapsed))
+	print(("%s*** %d failed tests! ***%s (%.3f s)"):format(COLOR_FAIL, tests_failed, COLOR_RESET, tests_elapsed))
 	os.exit(1)
 else
-	print(COLOR_PASS .. "*** all tests passed! ***" .. COLOR_RESET .. (" (%.3f s)"):format(tests_elapsed))
+	print(("%s*** all tests passed! ***%s (%.3f s)"):format(COLOR_PASS, COLOR_RESET, tests_elapsed))
 	os.exit(0)
 end
