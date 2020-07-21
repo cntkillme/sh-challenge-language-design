@@ -25,7 +25,8 @@
 	- [ ] program class
 	- [ ] variable_definition class
 	- [ ] function_definition class
-	- [ ] variable_assignment class
+	- [x] variable_assignment class
+		- [x] tests
 	- [x] call_expression class
 		- [x] tests
 	- [x] binary_expression class

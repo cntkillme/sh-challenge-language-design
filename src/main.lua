@@ -20,6 +20,7 @@ local spec = {
 	"test.compiler.region-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
+	"test.compiler.ast.variable-assignment-spec",
 	"test.compiler.ast.call-expression-spec",
 	"test.compiler.ast.binary-expression-spec",
 	"test.compiler.ast.unary-expression-spec",
