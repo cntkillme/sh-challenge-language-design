@@ -49,6 +49,7 @@ function symbol_table:symbol(name, depth)
 	return symbol
 end
 
+--- A symbol keeps track of a node shared between identical names and a reference to the previous symbol.
 --- @class symbol
 --- @field node abstract_node
 --- @field previous symbol | nil

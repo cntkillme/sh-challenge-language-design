@@ -30,7 +30,8 @@ local spec = {
 	"test.compiler.ast.variable-definition-spec",
 	"test.compiler.ast.program-spec",
 	"test.compiler.visitors.abstract-visitor-spec",
-	"test.compiler.visitors.ast-printer-spec"
+	"test.compiler.visitors.ast-printer-spec",
+	"test.compiler.visitors.ast-constrainer-spec"
 }
 
 local function output_tests(ts, path, elapsed)

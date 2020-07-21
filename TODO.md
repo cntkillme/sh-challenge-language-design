@@ -26,6 +26,7 @@
 		- [x] tests
 	- [x] ast_printer class
 		- [x] tests
-	- [ ] ast_constrainer class
+	- [x] ast_constrainer class
+		- [x] tests
 	- [ ] ast_codegen class
 	- [ ] tests
