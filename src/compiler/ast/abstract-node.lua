@@ -3,7 +3,6 @@
 --- @alias variable_definition any
 --- @alias function_definition any
 --- @alias variable_assignment any
---- @alias binary_expression any
 --- @alias call_expression any
 
 --- @alias statement variable_definition | function_definition | variable_assignment
