@@ -26,7 +26,8 @@
 	- [ ] variable_definition class
 	- [ ] function_definition class
 	- [ ] variable_assignment class
-	- [ ] call_expression class
+	- [x] call_expression class
+		- [x] tests
 	- [x] binary_expression class
 		- [x] tests
 	- [x] unary_expression class
