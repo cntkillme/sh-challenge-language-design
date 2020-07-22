@@ -1,6 +1,6 @@
 local abstract_node = require("compiler.ast.abstract-node")
 
---- The binary expression AST node.
+--- The variable assignment AST node.
 --- @class variable_assignment : abstract_node
 local variable_assignment = setmetatable({}, { __index = abstract_node })
 variable_assignment.__index = variable_assignment

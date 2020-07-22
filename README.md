@@ -5,9 +5,25 @@
 An overview of the SHLang specification can be seen [here](doc/contents.md).
 
 ## Requirements
-The user is to implement a compiler and an interpreter for SHLang. Specifically, the parser and an SHLang virtual machine must be implemented. Various utilities and classes are already provided and the user is expected to make use of them.
+The user is to complete the implementation of a compiler and an interpreter for SHLang. Various utilities and classes are already provided and the user is expected to make use of them.
 
 The use of lexer/parser generation tools or the usage of another user's submission is prohibited.
+
+Process:
+1. Tokenizer (input: SHLang source file, output: token stream)
+	- May be combined with syntax analysis.
+2. Syntax Analysis (input: token stream, output: undecorated AST)
+	- AST node classes are provided (see: [ast directory](src/compiler/ast)).
+	- Placeholder class is provided (see: [parser](src/compiler/parser.lua) class).
+3. Semantic Analysis (input: undecorated abstract syntax tree, output: decorated AST)
+	- Completely provided (see: [ast_constrainer](src/compiler/visitors/ast-constrainer.lua) class).
+4. Code Generation (input: decorated AST, output: SHLang bytecode)
+	- Completely provided (see: [ast_codegen](src/compiler/visitors/ast-codegen.lua) class).
+SHLang source code -> Tokenizer -> Tokenizer Stream -> Syntax Analysis* -> Abstract Syntax Tree -> Semantic Analysis ->
+5. Execution (input: SHLang bytecode, output: number)
+	- Various utility functions are provided (see: [virtual_machine](src/interpreter/virtual-machine.lua) class).
+
+The [compiler](src/compiler/compiler.lua) class provides an interface to the entire compilation process.
 
 ## Testing
 In the project's root directory, invoke Lua 5.3 to run the file `src/main.lua`.
