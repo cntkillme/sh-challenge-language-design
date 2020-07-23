@@ -6,8 +6,7 @@ virtual_machine.__index = virtual_machine
 --- @param istream input_stream
 function virtual_machine.new(istream)
 	return setmetatable({
-		_pc = 0,
-		_istream = istream
+		_istream = istream,
 		-- implementation defined
 	}, virtual_machine)
 end

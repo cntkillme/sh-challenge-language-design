@@ -62,7 +62,6 @@ function ast_codegen:visit_program(node)
 		stmt:accept(self)
 	end
 
-
 	-- Patch function calls.
 	for _, patch in ipairs(self._patch_table) do
 		local idx = patch.body_info.index

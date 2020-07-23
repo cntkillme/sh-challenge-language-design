@@ -19,7 +19,6 @@ Process:
 	- Completely provided (see: [ast_constrainer](src/compiler/visitors/ast-constrainer.lua) class).
 4. Code Generation (input: decorated AST, output: SHLang bytecode)
 	- Completely provided (see: [ast_codegen](src/compiler/visitors/ast-codegen.lua) class).
-SHLang source code -> Tokenizer -> Tokenizer Stream -> Syntax Analysis* -> Abstract Syntax Tree -> Semantic Analysis ->
 5. Execution (input: SHLang bytecode, output: number)
 	- Various utility functions are provided (see: [virtual_machine](src/virtual-machine.lua) class).
 
