@@ -32,7 +32,7 @@ function test_suite.prettify(value, _depth, _seen)
 
 		return tostring(value)
 	elseif valueType == "string" then -- escape quotes and binary data
-		return '"' .. value:gsub('[%c"]', escape_char) .. '"'
+		return '"' .. value:gsub('.', escape_char) .. '"'
 	elseif valueType == "table" then
 		return prettify_table(value, _depth, _seen)
 	else
@@ -212,10 +212,10 @@ function escape_char(char, quote)
 		return "\\n"
 	elseif char == "\t" then
 		return "\\t"
-	elseif char:match("%c") then
-		return "\\x" .. string.format("%.2X", char:byte())
-	else -- luacov: disable
+	elseif char:byte() >= 0x20 and char:byte() <= 0x7E then
 		return char
+	else
+		return "\\x" .. string.format("%.2X", char:byte())
 	end
 end
 

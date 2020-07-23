@@ -120,6 +120,95 @@ local function test_codegen_success(self)
 	self:is_equal(codegen:content(), bytecode)
 end
 
+local function test_codegen_success_2(self)
+	-- see resources/compiler/test.txt
+	local node = program.new(
+		{
+			variable_definition.new(identifier.new("PI"), number_literal.new("3.1415")),
+			variable_definition.new(identifier.new("x"), number_literal.new("100")),
+
+			function_definition.new(
+				identifier.new("f"),
+				{ identifier.new("x"), identifier.new("y"), identifier.new("z") },
+
+				binary_expression.new(
+					binary_expression.new(identifier.new("x"), identifier.new("y"), "+"),
+					binary_expression.new(identifier.new("z"), identifier.new("PI"), "*"),
+					"-"
+				)
+			),
+
+			function_definition.new(
+				identifier.new("g"),
+				{ identifier.new("z") },
+
+				call_expression.new(
+					identifier.new("f"),
+					{ identifier.new("x"), number_literal.new("0"), identifier.new("z") }
+				)
+			),
+
+			variable_assignment.new(
+				identifier.new("x"),
+				call_expression.new(identifier.new("g"), { identifier.new("x") })
+			),
+
+			variable_assignment.new(
+				identifier.new("x"),
+
+				call_expression.new(
+					identifier.new("f"),
+					{ identifier.new("x"), identifier.new("x"), identifier.new("x") }
+				)
+			),
+
+			variable_definition.new(identifier.new("y"))
+		},
+
+		binary_expression.new(
+			binary_expression.new(
+				call_expression.new(
+					identifier.new("f"),
+
+					{
+						unary_expression.new(identifier.new("y"), "$"),
+						unary_expression.new(binary_expression.new(identifier.new("y"), number_literal.new("1"), "+"), "$"),
+						binary_expression.new(unary_expression.new(identifier.new("y"), "$"), number_literal.new("2"), "+")
+					}
+				),
+
+				unary_expression.new(identifier.new("x"), "-"),
+				"/"
+			),
+
+			binary_expression.new(
+				binary_expression.new(identifier.new("PI"), unary_expression.new(number_literal.new("2"), "-"), "^"),
+				number_literal.new("100"),
+				"%"
+			),
+
+			"+"
+		)
+	)
+
+	-- see resources/compiler/test.txt
+	local bytecode = (
+		"53 48 4C 61 6E 67 2D 31 07 6F 12 83 C0 CA 21 09 40 07 00 00 00 00 00 00 59 40 08 01 0C 01 0D 67 00 00 00 " ..
+		"09 01 08 01 08 01 08 01 0C 03 0D 4C 00 00 00 09 01 07 00 00 00 00 00 00 00 00 08 02 0B 08 02 07 00 00 00 " ..
+		"00 00 00 F0 3F 00 0B 08 02 0B 07 00 00 00 00 00 00 00 40 00 0C 03 0D 1D 00 00 00 08 01 06 03 08 00 07 00 " ..
+		"00 00 00 00 00 00 40 06 05 07 00 00 00 00 00 00 59 40 04 00 0E 08 00 08 01 00 08 02 0A 00 02 01 0E 0A 01 " ..
+		"07 00 00 00 00 00 00 00 00 08 00 0C 03 0D E0 FF FF FF 0E"
+	):gsub("(%S+) ?", function(ptn) return string.char(tonumber(ptn, 16)) end)
+
+	local constrainer = ast_constrainer.new()
+	local codegen = ast_codegen.new()
+	node:accept(constrainer)
+	self:is_equal(constrainer:diagnostics(), {})
+	node:accept(codegen)
+	self:is_equal(codegen:diagnostics(), {})
+	self:is_equal(codegen:content(), bytecode)
+end
+
 local function test_codegen_failure(self)
 	local params = {}
 	local defns = {}
@@ -167,5 +256,6 @@ end
 --- @param self test_suite
 return function(self)
 	test_codegen_success(self)
+	test_codegen_success_2(self)
 	test_codegen_failure(self)
 end
