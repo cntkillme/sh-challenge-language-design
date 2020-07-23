@@ -47,13 +47,13 @@ function test_suite:tests()
 end
 
 --- Returns the total number of tests passed.
---- @return number
+--- @return integer
 function test_suite:tests_passed()
 	return self._passed
 end
 
 --- Returns the total number of tests failed.
---- @return number
+--- @return integer
 function test_suite:tests_failed()
 	return self._failed
 end

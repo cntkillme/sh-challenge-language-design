@@ -7,6 +7,11 @@ local variable_definition = require("compiler.ast.variable-definition")
 local ast_constrainer = {}
 ast_constrainer.__index = ast_constrainer
 
+--- Indication of an issue during semantic analysis.
+--- @class constrainer_diagnostic
+--- @field public node abstract_node | nil
+--- @field public message string
+
 --- Creates an ast_constrainer visitor.
 --- @return ast_constrainer
 function ast_constrainer.new()
@@ -18,7 +23,7 @@ function ast_constrainer.new()
 end
 
 --- Returns the list of diagnostics.
---- @return diagnostic[]
+--- @return constrainer_diagnostic[]
 function ast_constrainer:diagnostics()
 	return self._diagnostics
 end
@@ -47,8 +52,7 @@ function ast_constrainer:visit_function_definition(node)
 			self:_add_diagnostic(param, "duplicate parameter")
 		end
 
-		self._symbol_table:bind_symbol(param.lexeme, param)
-		param:accept(self)
+		param.symbol = self._symbol_table:bind_symbol(param.lexeme, param)
 	end
 
 	self._in_expression = true
@@ -148,11 +152,6 @@ end
 --- @param node number_literal
 function ast_constrainer:visit_number_literal(node) -- luacheck: ignore 212/node
 end
-
---- A diagnostic indicates an issue.
---- @class diagnostic
---- @field public node abstract_node | nil
---- @field public message string
 
 function ast_constrainer:_add_diagnostic(node, message)
 	table.insert(self._diagnostics, { node = node, message = message })

@@ -4,12 +4,12 @@
 ---  - first_position <= last_position,
 ---  - and first_column <= last_column if first_line == last_line.
 --- @class region
---- @field public first_line number
---- @field public last_line number
---- @field public first_column number
---- @field public last_column number
---- @field public first_position number
---- @field public last_position number
+--- @field public first_line integer
+--- @field public last_line integer
+--- @field public first_column integer
+--- @field public last_column integer
+--- @field public first_position integer
+--- @field public last_position integer
 local region = {}
 
 --- Creates an identity region.
@@ -20,9 +20,9 @@ end
 
 --- Creates a region from a lexeme and an origin. The lexeme cannot be empty or end with a line feed.
 --- @param lexeme string
---- @param first_line number | nil
---- @param first_column number | nil
---- @param first_position number | nil
+--- @param first_line integer | nil
+--- @param first_column integer | nil
+--- @param first_position integer | nil
 --- @return region
 function region.from_lexeme(lexeme, first_line, first_column, first_position)
 	local lines = select(2, lexeme:gsub("\n", "\n"))

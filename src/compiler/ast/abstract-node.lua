@@ -1,11 +1,11 @@
---- @alias statement variable_definition | function_definition | variable_assignment
---- @alias expression binary_expression | unary_expression | call_expression | identifier | number_literal
-
 --- Abstract AST node class.
 --- @class abstract_node
 --- @field public region region
 local abstract_node = {}
 abstract_node.__index = abstract_node
+
+--- @alias statement variable_definition | function_definition | variable_assignment
+--- @alias expression binary_expression | unary_expression | call_expression | identifier | number_literal
 
 --- Returns the node kind.
 --- @return table

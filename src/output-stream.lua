@@ -50,8 +50,8 @@ end
 
 --- Raises an error, uses the stream's line/position and column information when unspecified.
 --- @param message string
---- @param line number | nil
---- @param column number | nil
+--- @param line integer | nil
+--- @param column integer | nil
 function output_stream:error(message, line, column)
 	if self._binary then
 		error(("%s:%.4X: %s"):format(self._path, self._position or line, message or "error"))
@@ -98,19 +98,19 @@ function output_stream:flush()
 end
 
 --- Returns the current line.
---- @return number
+--- @return integer
 function output_stream:line()
 	return self._line
 end
 
 --- Returns the current column.
---- @return number
+--- @return integer
 function output_stream:column()
 	return self._column
 end
 
 --- Returns the current file position.
---- @return number
+--- @return integer
 function output_stream:position()
 	return self._position
 end
