@@ -21,9 +21,9 @@ Process:
 	- Completely provided (see: [ast_codegen](src/compiler/visitors/ast-codegen.lua) class).
 SHLang source code -> Tokenizer -> Tokenizer Stream -> Syntax Analysis* -> Abstract Syntax Tree -> Semantic Analysis ->
 5. Execution (input: SHLang bytecode, output: number)
-	- Various utility functions are provided (see: [virtual_machine](src/interpreter/virtual-machine.lua) class).
+	- Various utility functions are provided (see: [virtual_machine](src/virtual-machine.lua) class).
 
-The [compiler](src/compiler/compiler.lua) class provides an interface to the entire compilation process.
+The [compiler](src/compiler/compiler.lua) class provides an interface to the entire compilation process. To begin testing, uncomment the relevant tests in [src/main.lua](src/main.lua).
 
 ## Testing
 In the project's root directory, invoke Lua 5.3 to run the file `src/main.lua`.

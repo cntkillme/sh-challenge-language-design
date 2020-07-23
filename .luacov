@@ -8,7 +8,10 @@ return {
 	codefromstrings = false,
 	include = { "src/" },
 	exclude = {
-		"src/main",
+		"src/main$",
+		"src/compiler$",
+		"src/compiler/parser",
+		"src/virtual-machine",
 		"luacov$",
 		"luacov/reporter$",
 		"luacov/defaults$",
