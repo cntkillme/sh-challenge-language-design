@@ -204,7 +204,7 @@
 			PUSHPC()
 			PUSHBP()
 			pc = pc + operand
-			bp = MAX(sp, sp - ARGCOUNT() + 1)
+			bp = MIN(sp, sp - ARGCOUNT() + 1)
 			```
 
 			Example:
@@ -221,7 +221,7 @@
 
 			Returns from a function. The program counter (pc) register is updated to the last saved return address and the base pointer (bp) register is updated to the last saved base pointer. Additionally, the value that was originally on the top of the stack will remain on the top of the stack after all arguments are removed.
 			```
-			retval = TOP()
+			retval = pop()
 			sp = bp
 			bp = POPBP()
 			pc = POPPC()

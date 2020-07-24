@@ -26,7 +26,7 @@ end
 return function(self)
 	local expected = read_file("resources/compiler/test.bin", true)
 	local output = io.tmpfile()
-	compiler(input_stream.new("resources/compiler/test.txt"), output_stream.from_file(output))
+	compiler(input_stream.from_file("resources/compiler/test.txt"), output_stream.from_file(output))
 	output:seek("set", 0)
 	local got = read_file(output)
 	self:is_equal(got, expected)

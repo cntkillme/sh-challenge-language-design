@@ -35,7 +35,7 @@ end
 
 --- @param self test_suite
 return function(self)
-	local ast = parser.new(input_stream.new("resources/compiler/test.txt")):parse()
+	local ast = parser.new(input_stream.from_file("resources/compiler/test.txt")):parse()
 
 	local expected = program.new(
 		{
