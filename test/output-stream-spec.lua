@@ -1,5 +1,8 @@
 local output_stream = require("output-stream")
 
+--- @param self test_suite
+--- @param ostream output_stream
+--- @param written string
 local function test_output_stream_pass(self, ostream, written)
 	local line = 1
 	local column = 1
@@ -28,6 +31,9 @@ local function test_output_stream_pass(self, ostream, written)
 	ostream:close()
 end
 
+--- @param self test_suite
+--- @param ostream output_stream
+--- @param written string
 local function test_output_stream_pass_binary(self, ostream, written)
 	self:is_equal(ostream:line(), 0)
 	self:is_equal(ostream:column(), 0)
@@ -41,6 +47,9 @@ local function test_output_stream_pass_binary(self, ostream, written)
 	ostream:close()
 end
 
+--- @param path string
+--- @param binary boolean
+--- @return string
 local function read_file(path, binary)
 	local file = assert(io.open(path, binary and "rb" or "r"))
 	local contents = {}

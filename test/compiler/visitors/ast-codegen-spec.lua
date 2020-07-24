@@ -10,6 +10,7 @@ local function_definition = require("compiler.ast.function-definition")
 local variable_assignment = require("compiler.ast.variable-assignment")
 local variable_definition = require("compiler.ast.variable-definition")
 
+--- @param self test_suite
 local function test_codegen_success(self)
 	-- let x
 	-- let pi = 3.14
@@ -120,6 +121,7 @@ local function test_codegen_success(self)
 	self:is_equal(codegen:content(), bytecode)
 end
 
+--- @param self test_suite
 local function test_codegen_success_2(self)
 	-- see resources/compiler/test.txt
 	local node = program.new(
@@ -209,6 +211,7 @@ local function test_codegen_success_2(self)
 	self:is_equal(codegen:content(), bytecode)
 end
 
+--- @param self test_suite
 local function test_codegen_failure(self)
 	local params = {}
 	local defns = {}

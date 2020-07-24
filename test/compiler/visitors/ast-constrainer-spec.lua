@@ -9,6 +9,7 @@ local function_definition = require("compiler.ast.function-definition")
 local variable_assignment = require("compiler.ast.variable-assignment")
 local variable_definition = require("compiler.ast.variable-definition")
 
+--- @param self test_suite
 local function test_constrainer_success(self)
 	-- let f(x, y) = x + (((y * x) / y) % 1)
 	-- let x = f(31, 2 * -9)
@@ -84,6 +85,7 @@ local function test_constrainer_success(self)
 	end
 end
 
+--- @param self test_suite
 local function test_constrainer_failure(self)
 	--- let f() = 0
 	--- let f() = g(x)        # duplicate identifier f, unknown identifier g, unknown identifier x

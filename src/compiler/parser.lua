@@ -6,9 +6,8 @@ parser.__index = parser
 --- Creates a parser.
 --- @param istream input_stream
 --- @return parser
-function parser.new(istream)
+function parser.new(istream) -- luacheck: ignore 212/istream
 	return setmetatable({
-		_istream = istream,
 		-- implementation defined
 	}, parser)
 end

@@ -2,6 +2,9 @@ local compiler = require("compiler")
 local input_stream = require("input-stream")
 local output_stream = require("output-stream")
 
+--- @param path string
+--- @param binary boolean
+--- @return string
 local function read_file(path, binary)
 	local file = assert(io.open(path, binary and "rb" or "r"))
 	local contents = {}

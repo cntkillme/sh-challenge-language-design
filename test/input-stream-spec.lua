@@ -1,5 +1,8 @@
 local input_stream = require("input-stream")
 
+--- @param self test_suite
+--- @param istream input_stream
+--- @param expected string
 local function test_input_stream_pass(self, istream, expected)
 	local line = 1
 	local column = 1
@@ -33,6 +36,9 @@ local function test_input_stream_pass(self, istream, expected)
 	istream:close()
 end
 
+--- @param self test_suite
+--- @param istream input_stream
+--- @param expected string
 local function test_input_stream_pass_binary(self, istream, expected)
 	local charactersRead = {}
 	local position = 0
@@ -56,6 +62,9 @@ local function test_input_stream_pass_binary(self, istream, expected)
 	istream:close()
 end
 
+--- @param path string
+--- @param binary boolean
+--- @return string
 local function read_file(path, binary)
 	local file = assert(io.open(path, binary and "rb" or "r"))
 	local contents = {}
