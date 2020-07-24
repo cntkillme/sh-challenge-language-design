@@ -17,7 +17,7 @@
 	- [x] tests
 - [x] symbol_table class
 	- [x] tests
-- [x] region class
+- [x] position class
 	- [x] tests
 - [x] ast classes
 	- [x] tests

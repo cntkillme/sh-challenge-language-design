@@ -7,14 +7,14 @@ identifier.__index = identifier
 
 --- Creates a new identifier AST node.
 --- @param lexeme string
---- @param region region | nil
+--- @param position position | nil
 --- @return identifier
-function identifier.new(lexeme, region)
+function identifier.new(lexeme, position)
 	return setmetatable({
 		--- @type symbol | nil
 		symbol = nil,
 		lexeme = lexeme,
-		region = region
+		position = position
 	}, identifier)
 end
 

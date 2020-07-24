@@ -8,10 +8,10 @@ variable_definition.__index = variable_definition
 --- Creates a variable_definition AST node.
 --- @param name identifier
 --- @param expression expression | nil
---- @param region region | nil
+--- @param position position | nil
 --- @return variable_definition
-function variable_definition.new(name, expression, region)
-	return setmetatable({ name = name, expression = expression, region = region }, variable_definition)
+function variable_definition.new(name, expression, position)
+	return setmetatable({ name = name, expression = expression, position = position }, variable_definition)
 end
 
 --- Returns whether or not the node is a statement.

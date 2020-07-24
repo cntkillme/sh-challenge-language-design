@@ -3,7 +3,6 @@ local ast_codegen = require("compiler.visitors.ast-codegen")
 local ast_constrainer = require("compiler.visitors.ast-constrainer")
 
 --- Interface to the entire compilation process.
---- TODO: pretty-print all diagnostics (requires exposing various properties of input_stream and output_stream).
 --- @param istream input_stream
 --- @param ostream output_stream
 return function(istream, ostream)
@@ -19,8 +18,8 @@ return function(istream, ostream)
 
 		istream:error(
 			diagnostic.message,
-			diagnostic.node and diagnostic.node.region and diagnostic.node.region.first_line or 1,
-			diagnostic.node and diagnostic.node.region and diagnostic.node.region.first_column or 1
+			diagnostic.node and diagnostic.node.position and diagnostic.node.position.line or 1,
+			diagnostic.node and diagnostic.node.position and diagnostic.node.position.column or 1
 		)
 		-- luacov: enable
 	end

@@ -8,10 +8,10 @@ variable_assignment.__index = variable_assignment
 --- Creates a variable_assignment AST node.
 --- @param target identifier
 --- @param expression expression
---- @param region region | nil
+--- @param position position | nil
 --- @return variable_assignment
-function variable_assignment.new(target, expression, region)
-	return setmetatable({ target = target, expression = expression, region = region }, variable_assignment)
+function variable_assignment.new(target, expression, position)
+	return setmetatable({ target = target, expression = expression, position = position }, variable_assignment)
 end
 
 --- Returns whether or not the node is a statement.

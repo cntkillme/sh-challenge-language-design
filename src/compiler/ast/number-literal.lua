@@ -7,10 +7,10 @@ number_literal.__index = number_literal
 
 --- Creates a number_literal AST node.
 --- @param lexeme string
---- @param region region | nil
+--- @param position position | nil
 --- @return number_literal
-function number_literal.new(lexeme, region)
-	return setmetatable({ lexeme = lexeme, region = region }, number_literal)
+function number_literal.new(lexeme, position)
+	return setmetatable({ lexeme = lexeme, position = position }, number_literal)
 end
 
 --- Returns whether or not the lexeme is a valid number.

@@ -8,10 +8,10 @@ call_expression.__index = call_expression
 --- Creates a new call_expression AST node.
 --- @param target identifier
 --- @param arguments expression[]
---- @param region region | nil
+--- @param position position | nil
 --- @return call_expression
-function call_expression.new(target, arguments, region)
-	return setmetatable({ target = target, arguments = arguments, region = region }, call_expression)
+function call_expression.new(target, arguments, position)
+	return setmetatable({ target = target, arguments = arguments, position = position }, call_expression)
 end
 
 --- Returns whether or not the node is a statement.

@@ -8,10 +8,10 @@ unary_expression.__index = unary_expression
 --- Creates a unary_expression AST node.
 --- @param operand expression
 --- @param operator string
---- @param region region | nil
+--- @param position position | nil
 --- @return unary_expression
-function unary_expression.new(operand, operator, region)
-	return setmetatable({ operand = operand, operator = operator, region = region }, unary_expression)
+function unary_expression.new(operand, operator, position)
+	return setmetatable({ operand = operand, operator = operator, position = position }, unary_expression)
 end
 
 --- Returns whether or not the operator is a valid unary operator.

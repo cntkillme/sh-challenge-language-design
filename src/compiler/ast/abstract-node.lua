@@ -1,6 +1,6 @@
 --- Abstract AST node class.
 --- @class abstract_node
---- @field public region region
+--- @field public position position
 local abstract_node = {}
 abstract_node.__index = abstract_node
 

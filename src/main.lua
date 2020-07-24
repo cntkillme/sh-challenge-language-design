@@ -17,7 +17,7 @@ local spec = {
 	"test.test-suite-spec",
 	"test.input-stream-spec",
 	"test.output-stream-spec",
-	"test.compiler.region-spec",
+	"test.compiler.position-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
 	"test.compiler.ast.number-literal-spec",

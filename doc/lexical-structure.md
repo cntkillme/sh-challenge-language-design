@@ -28,7 +28,7 @@
 		input-element = whitespace | comment | token;
 		```
 
-		Three basic elements make up the lexical structure of SHLang: whitespace, comments, and tokens. Only tokens are significant in the syntactic grammar of an SHLang program. If the final character of a SHLang source file is not a line feed, the compiler shall artificially insert one before the EOF marker.
+		Three basic elements make up the lexical structure of SHLang: whitespace, comments, and tokens. Only tokens are significant in the syntactic grammar of an SHLang program. If the final character of a SHLang source file is not a line feed, the compiler may artificially insert one before the EOF marker.
 
 	2. Comments
 

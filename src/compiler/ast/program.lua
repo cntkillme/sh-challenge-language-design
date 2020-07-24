@@ -8,10 +8,10 @@ program.__index = program
 --- Creates a new program AST node.
 --- @param statements statement[]
 --- @param returns expression
---- @param region region | nil
+--- @param position position | nil
 --- @return program
-function program.new(statements, returns, region)
-	return setmetatable({ statements = statements, returns = returns, region = region }, program)
+function program.new(statements, returns, position)
+	return setmetatable({ statements = statements, returns = returns, position = position }, program)
 end
 
 --- Returns whether or not the node is a statement.

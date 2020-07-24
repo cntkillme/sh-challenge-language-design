@@ -9,14 +9,14 @@ binary_expression.__index = binary_expression
 --- @param leftOperand expression
 --- @param rightOperand expression
 --- @param operator string
---- @param region region | nil
+--- @param position position | nil
 --- @return binary_expression
-function binary_expression.new(leftOperand, rightOperand, operator, region)
+function binary_expression.new(leftOperand, rightOperand, operator, position)
 	return setmetatable({
 		left_operand = leftOperand,
 		right_operand = rightOperand,
 		operator = operator,
-		region = region
+		position = position
 	}, binary_expression)
 end
 
