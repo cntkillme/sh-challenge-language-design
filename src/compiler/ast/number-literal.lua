@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The number literal AST node.
@@ -7,10 +8,10 @@ number_literal.__index = number_literal
 
 --- Creates a number_literal AST node.
 --- @param lexeme string
---- @param position position | nil
+--- @param origin position | nil
 --- @return number_literal
-function number_literal.new(lexeme, position)
-	return setmetatable({ lexeme = lexeme, position = position }, number_literal)
+function number_literal.new(lexeme, origin)
+	return setmetatable({ lexeme = lexeme, origin = origin or position.zero() }, number_literal)
 end
 
 --- Returns whether or not the lexeme is a valid number.

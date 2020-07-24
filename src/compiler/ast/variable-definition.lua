@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The variable definition AST node.
@@ -8,10 +9,14 @@ variable_definition.__index = variable_definition
 --- Creates a variable_definition AST node.
 --- @param name identifier
 --- @param expression expression | nil
---- @param position position | nil
+--- @param origin position | nil
 --- @return variable_definition
-function variable_definition.new(name, expression, position)
-	return setmetatable({ name = name, expression = expression, position = position }, variable_definition)
+function variable_definition.new(name, expression, origin)
+	return setmetatable({
+		name = name,
+		expression = expression,
+		origin = origin or position.zero()
+	}, variable_definition)
 end
 
 --- Returns whether or not the node is a statement.

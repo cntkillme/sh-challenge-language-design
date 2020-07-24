@@ -1,15 +1,11 @@
 local bytecode = require("bytecode")
+local diagnostic = require("compiler.diagnostic")
 local function_definition = require("compiler.ast.function-definition")
 
 --- AST codegen visitor class.
 --- @class ast_codegen
 local ast_codegen = {}
 ast_codegen.__index = ast_codegen
-
---- Indication of an issue during code generation.
---- @class codegen_diagnostic
---- @field public node abstract_node | nil
---- @field public message string
 
 --- Creates an ast_codegen visitor.
 --- @return ast_codegen
@@ -35,7 +31,7 @@ function ast_codegen:content()
 end
 
 --- Returns the list of diagnostics.
---- @return codegen_diagnostic[]
+--- @return diagnostic[]
 function ast_codegen:diagnostics()
 	return self._diagnostics
 end
@@ -85,6 +81,11 @@ end
 --- @param node function_definition
 function ast_codegen:visit_function_definition(node)
 	local idx = self._next_function_index
+
+	if idx > 255 then
+		return
+	end
+
 	self._current_function = self:_make_function(node)
 	node.body:accept(self)
 	self:_emit_iv(bytecode.instructions.ret.opcode)
@@ -93,8 +94,8 @@ function ast_codegen:visit_function_definition(node)
 	self._current_function = nil
 	self._next_function_index = idx + 1
 
-	if idx >= 255 then
-		self:_add_diagnostic(node, "too many functions")
+	if idx == 255 then
+		table.insert(self._diagnostics, diagnostic.new("too many functions", node.origin))
 	end
 end
 
@@ -102,6 +103,10 @@ end
 --- @param node variable_definition
 function ast_codegen:visit_variable_definition(node)
 	local idx = self._next_global_index
+
+	if idx > 255 then
+		return
+	end
 
 	if node.expression then
 		node.expression:accept(self)
@@ -112,8 +117,8 @@ function ast_codegen:visit_variable_definition(node)
 	self._globals[node.name.lexeme] = idx
 	self._next_global_index = idx + 1
 
-	if idx >= 255 then
-		self:_add_diagnostic(node, "too many variables")
+	if idx == 255 then
+		table.insert(self._diagnostics, diagnostic.new("too many variables", node.origin))
 	end
 end
 
@@ -191,12 +196,6 @@ function ast_codegen:visit_number_literal(node)
 	self:_emit_id(bytecode.instructions.imm.opcode, tonumber(node.lexeme))
 end
 
---- @param node abstract_node
---- @param message string
-function ast_codegen:_add_diagnostic(node, message)
-	table.insert(self._diagnostics, { node = node, message = message })
-end
-
 --- @param value integer
 function ast_codegen:_emit_byte(value)
 	local body = self._current_function and self._current_function.body or self._body
@@ -258,7 +257,7 @@ function ast_codegen:_make_function(definition)
 		func.parameters[param.lexeme] = idx - 1
 
 		if idx == 256 then
-			self:_add_diagnostic(definition, "too many parameters")
+			table.insert(self._diagnostics, diagnostic.new("too many parameters", param.origin))
 			break
 		end
 	end

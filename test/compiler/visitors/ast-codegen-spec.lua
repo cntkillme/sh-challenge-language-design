@@ -220,7 +220,7 @@ local function test_codegen_failure(self)
 		table.insert(params, identifier.new("p" .. idx))
 	end
 
-	for idx = 1, 256 do
+	for idx = 1, 257 do
 		table.insert(defns, variable_definition.new(identifier.new("v" .. idx)))
 		table.insert(defns, function_definition.new(identifier.new("f" .. idx), {}, number_literal.new("0")))
 	end
@@ -237,7 +237,6 @@ local function test_codegen_failure(self)
 	local expectedDiagnostics = {
 		"too many variables",
 		"too many parameters",
-		"too many functions",
 		"too many functions"
 	}
 

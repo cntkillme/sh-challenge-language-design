@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The function definition AST node.
@@ -9,10 +10,14 @@ function_definition.__index = function_definition
 --- @param name identifier
 --- @param parameters identifier[]
 --- @param body expression
---- @param position position | nil
+--- @param origin position | nil
 --- @return function_definition
-function function_definition.new(name, parameters, body, position)
-	return setmetatable({ name = name, parameters = parameters, body = body, position = position }, function_definition)
+function function_definition.new(name, parameters, body, origin)
+	return setmetatable({
+		name = name,
+		parameters = parameters, body = body,
+		origin = origin or position.zero()
+	}, function_definition)
 end
 
 --- Returns whether or not the node is a statement.

@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The program AST node.
@@ -8,10 +9,10 @@ program.__index = program
 --- Creates a new program AST node.
 --- @param statements statement[]
 --- @param returns expression
---- @param position position | nil
+--- @param origin position | nil
 --- @return program
-function program.new(statements, returns, position)
-	return setmetatable({ statements = statements, returns = returns, position = position }, program)
+function program.new(statements, returns, origin)
+	return setmetatable({ statements = statements, returns = returns, origin = origin or position.zero() }, program)
 end
 
 --- Returns whether or not the node is a statement.

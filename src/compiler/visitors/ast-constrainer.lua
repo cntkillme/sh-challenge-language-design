@@ -1,3 +1,4 @@
+local diagnostic = require("compiler.diagnostic")
 local symbol_table = require("compiler.symbol-table")
 local function_definition = require("compiler.ast.function-definition")
 local variable_definition = require("compiler.ast.variable-definition")
@@ -6,11 +7,6 @@ local variable_definition = require("compiler.ast.variable-definition")
 --- @class ast_constrainer
 local ast_constrainer = {}
 ast_constrainer.__index = ast_constrainer
-
---- Indication of an issue during semantic analysis.
---- @class constrainer_diagnostic
---- @field public node abstract_node | nil
---- @field public message string
 
 --- Creates an ast_constrainer visitor.
 --- @return ast_constrainer
@@ -23,7 +19,7 @@ function ast_constrainer.new()
 end
 
 --- Returns the list of diagnostics.
---- @return constrainer_diagnostic[]
+--- @return diagnostic[]
 function ast_constrainer:diagnostics()
 	return self._diagnostics
 end
@@ -42,14 +38,14 @@ end
 --- @param node function_definition
 function ast_constrainer:visit_function_definition(node)
 	if self._symbol_table:symbol(node.name.lexeme, 0) then
-		self:_add_diagnostic(node.name, "duplicate identifier")
+		table.insert(self._diagnostics, diagnostic.new("duplicate identifier", node.origin))
 	end
 
 	self._symbol_table:open_scope()
 
 	for _, param in ipairs(node.parameters) do
 		if self._symbol_table:symbol(param.lexeme, 0) then
-			self:_add_diagnostic(param, "duplicate parameter")
+			table.insert(self._diagnostics, diagnostic.new("duplicate parameter", param.origin))
 		end
 
 		param.symbol = self._symbol_table:bind_symbol(param.lexeme, param)
@@ -68,7 +64,7 @@ end
 --- @param node variable_definition
 function ast_constrainer:visit_variable_definition(node)
 	if self._symbol_table:symbol(node.name.lexeme, 0) then
-		self:_add_diagnostic(node.name, "duplicate identifier")
+		table.insert(self._diagnostics, diagnostic.new("duplicate identifier", node.origin))
 	end
 
 	if node.expression then
@@ -87,7 +83,7 @@ function ast_constrainer:visit_variable_assignment(node)
 	node.target:accept(self)
 
 	if node.target.symbol and node.target.symbol.node:kind() ~= variable_definition then
-		self:_add_diagnostic(node.target, "attempt to assign to a function")
+		table.insert(self._diagnostics, diagnostic.new("attempt to assign to a function", node.origin))
 	end
 
 	self._in_expression = true
@@ -117,10 +113,10 @@ function ast_constrainer:visit_call_expression(node)
 
 	if node.target.symbol then
 		if node.target.symbol.node:kind() ~= function_definition then
-			self:_add_diagnostic(node.target, "attempt to call a variable")
+			table.insert(self._diagnostics, diagnostic.new("attempt to call a variable", node.origin))
 		else
 			if #node.arguments ~= #node.target.symbol.node.parameters then
-				self:_add_diagnostic(node, "argument count differs from parameter count")
+				table.insert(self._diagnostics, diagnostic.new("argument count differs from parameter count", node.origin))
 			end
 		end
 	end
@@ -140,10 +136,10 @@ function ast_constrainer:visit_identifier(node)
 	node.symbol = self._symbol_table:symbol(node.lexeme)
 
 	if not node.symbol then
-		self:_add_diagnostic(node, "unknown identifier")
+		table.insert(self._diagnostics, diagnostic.new("unknown identifier", node.origin))
 	elseif self._in_expression and node.symbol.node:is_statement() then
 		if node.symbol.node:kind() ~= variable_definition then
-			self:_add_diagnostic(node, "expected expression")
+			table.insert(self._diagnostics, diagnostic.new("expected expression", node.origin))
 		end
 	end
 end
@@ -151,12 +147,6 @@ end
 --- Visitor for a number_literal AST node.
 --- @param node number_literal
 function ast_constrainer:visit_number_literal(node) -- luacheck: ignore 212/node
-end
-
---- @param node abstract_node
---- @param message string
-function ast_constrainer:_add_diagnostic(node, message)
-	table.insert(self._diagnostics, { node = node, message = message })
 end
 
 return ast_constrainer

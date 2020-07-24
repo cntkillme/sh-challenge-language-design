@@ -1,13 +1,13 @@
 package.path = "./src/?.lua;" .. package.path
 local test_suite = require("test-suite");
 
---- Constants
+-- Constants
 local COLOR_PASS = "\27[32m"
 local COLOR_FAIL = "\27[31m"
 local COLOR_INFO = "\27[34m"
 local COLOR_RESET = "\27[0m"
 
---- Test results
+-- Test results
 local tests_passed = 0
 local tests_failed = 0
 local tests_elapsed = 0
@@ -18,6 +18,7 @@ local spec = {
 	"test.input-stream-spec",
 	"test.output-stream-spec",
 	"test.compiler.position-spec",
+	"test.compiler.diagnostic-spec",
 	"test.compiler.symbol-table-spec",
 	"test.compiler.ast.abstract-node-spec",
 	"test.compiler.ast.number-literal-spec",

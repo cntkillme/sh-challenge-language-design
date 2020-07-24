@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The identifier AST node.
@@ -7,14 +8,14 @@ identifier.__index = identifier
 
 --- Creates a new identifier AST node.
 --- @param lexeme string
---- @param position position | nil
+--- @param origin position | nil
 --- @return identifier
-function identifier.new(lexeme, position)
+function identifier.new(lexeme, origin)
 	return setmetatable({
 		--- @type symbol | nil
 		symbol = nil,
 		lexeme = lexeme,
-		position = position
+		origin = origin or position.zero()
 	}, identifier)
 end
 

@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The unary expression AST node.
@@ -8,10 +9,14 @@ unary_expression.__index = unary_expression
 --- Creates a unary_expression AST node.
 --- @param operand expression
 --- @param operator string
---- @param position position | nil
+--- @param origin position | nil
 --- @return unary_expression
-function unary_expression.new(operand, operator, position)
-	return setmetatable({ operand = operand, operator = operator, position = position }, unary_expression)
+function unary_expression.new(operand, operator, origin)
+	return setmetatable({
+		operand = operand,
+		operator = operator,
+		origin = origin or position.zero()
+	}, unary_expression)
 end
 
 --- Returns whether or not the operator is a valid unary operator.

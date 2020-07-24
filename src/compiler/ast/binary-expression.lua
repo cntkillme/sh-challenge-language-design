@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The binary expression AST node.
@@ -9,14 +10,14 @@ binary_expression.__index = binary_expression
 --- @param leftOperand expression
 --- @param rightOperand expression
 --- @param operator string
---- @param position position | nil
+--- @param origin position | nil
 --- @return binary_expression
-function binary_expression.new(leftOperand, rightOperand, operator, position)
+function binary_expression.new(leftOperand, rightOperand, operator, origin)
 	return setmetatable({
 		left_operand = leftOperand,
 		right_operand = rightOperand,
 		operator = operator,
-		position = position
+		origin = origin or position.zero()
 	}, binary_expression)
 end
 

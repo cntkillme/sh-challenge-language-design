@@ -1,3 +1,4 @@
+local position = require("compiler.position")
 local abstract_node = require("compiler.ast.abstract-node")
 
 --- The call expression AST node.
@@ -8,10 +9,10 @@ call_expression.__index = call_expression
 --- Creates a new call_expression AST node.
 --- @param target identifier
 --- @param arguments expression[]
---- @param position position | nil
+--- @param origin position | nil
 --- @return call_expression
-function call_expression.new(target, arguments, position)
-	return setmetatable({ target = target, arguments = arguments, position = position }, call_expression)
+function call_expression.new(target, arguments, origin)
+	return setmetatable({ target = target, arguments = arguments, origin = origin or position.zero() }, call_expression)
 end
 
 --- Returns whether or not the node is a statement.
