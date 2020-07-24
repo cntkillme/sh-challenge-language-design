@@ -10,14 +10,14 @@ The user is to complete the implementation of a compiler and an interpreter for 
 The use of lexer/parser generation tools or the usage of another user's submission is prohibited.
 
 Process:
-1. Tokenizer (input: SHLang source file, output: token stream)
+1. Lexical analysis (input: SHLang source file, output: token stream)
 	- May be combined with syntax analysis.
-2. Syntax Analysis (input: token stream, output: undecorated AST)
+2. Syntax analysis (input: token stream, output: undecorated AST)
 	- AST node classes are provided (see: [ast directory](src/compiler/ast)).
 	- Placeholder class is provided (see: [parser](src/compiler/parser.lua) class).
-3. Semantic Analysis (input: undecorated abstract syntax tree, output: decorated AST)
+3. Semantic analysis (input: undecorated abstract syntax tree, output: decorated AST)
 	- Completely provided (see: [ast_constrainer](src/compiler/visitors/ast-constrainer.lua) class).
-4. Code Generation (input: decorated AST, output: SHLang bytecode)
+4. Code generation (input: decorated AST, output: SHLang bytecode)
 	- Completely provided (see: [ast_codegen](src/compiler/visitors/ast-codegen.lua) class).
 5. Execution (input: SHLang bytecode, output: number)
 	- Various utility functions are provided (see: [virtual_machine](src/virtual-machine.lua) class).
