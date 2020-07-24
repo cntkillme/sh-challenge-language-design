@@ -18,4 +18,10 @@ function parser:parse()
 	error("parser::parse(): not yet implemented!")
 end
 
+--- Returns the list of diagnostics.
+--- @return diagnostic[]
+function parser:diagnostics()
+	-- implementation defined
+end
+
 return parser
