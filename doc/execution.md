@@ -224,6 +224,6 @@
 			retval = TOP()
 			sp = bp
 			bp = POPBP()
-			push(retval)
 			pc = POPPC()
+			push(retval)
 			```

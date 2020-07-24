@@ -191,6 +191,8 @@ function ast_codegen:visit_number_literal(node)
 	self:_emit_id(bytecode.instructions.imm.opcode, tonumber(node.lexeme))
 end
 
+--- @param node abstract_node
+--- @param message string
 function ast_codegen:_add_diagnostic(node, message)
 	table.insert(self._diagnostics, { node = node, message = message })
 end
@@ -264,6 +266,7 @@ function ast_codegen:_make_function(definition)
 	return func
 end
 
+--- @return table
 function ast_codegen:_body_info()
 	local body = self._current_function and self._current_function.body or self._body
 

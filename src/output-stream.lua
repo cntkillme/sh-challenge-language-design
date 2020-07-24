@@ -97,6 +97,19 @@ function output_stream:flush()
 	end
 end
 
+
+--- Returns the path.
+--- @return string
+function output_stream:path()
+	return self._path
+end
+
+--- Returns whether the stream was opened in binary mode.
+--- @return boolean
+function output_stream:binary()
+	return self._binary
+end
+
 --- Returns the current line.
 --- @return integer
 function output_stream:line()

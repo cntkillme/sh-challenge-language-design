@@ -153,6 +153,8 @@ end
 function ast_constrainer:visit_number_literal(node) -- luacheck: ignore 212/node
 end
 
+--- @param node abstract_node
+--- @param message string
 function ast_constrainer:_add_diagnostic(node, message)
 	table.insert(self._diagnostics, { node = node, message = message })
 end

@@ -124,10 +124,12 @@ function ast_printer:visit_number_literal(node)
 	self:_write(node.lexeme)
 end
 
+--- @param str string
 function ast_printer:_write(str)
 	table.insert(self._content, str)
 end
 
+--- @param str string
 function ast_printer:_print(str)
 	self:_write((str or "") .. "\n")
 end

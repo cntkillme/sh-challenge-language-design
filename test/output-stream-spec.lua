@@ -87,6 +87,8 @@ return function(self)
 	end
 
 	local ostream = output_stream.from_file("resources/output-stream/fail.txt")
+	self:is_equal(ostream:path(), "resources/output-stream/fail.txt")
+	self:is_falsy(ostream:binary())
 	self:did_invoke_fail(ostream.write, ostream, "\1\2")
 	ostream:close()
 end

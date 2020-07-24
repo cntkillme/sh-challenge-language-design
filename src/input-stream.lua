@@ -122,6 +122,18 @@ function input_stream:next()
 	return self:peek()
 end
 
+--- Returns the path.
+--- @return string
+function input_stream:path()
+	return self._path
+end
+
+--- Returns whether the stream was opened in binary mode.
+--- @return boolean
+function input_stream:binary()
+	return self._binary
+end
+
 --- Returns the current line.
 --- @return integer
 function input_stream:line()
@@ -140,10 +152,12 @@ function input_stream:position()
 	return self._position
 end
 
+--- @return integer
 function input_stream:_buffer_index()
 	return 1 + (self._position % BUFFER_SIZE)
 end
 
+--- @return boolean
 function input_stream:_check_buffer()
 	assert(self._file, "input_stream is not opened")
 

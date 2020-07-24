@@ -38,6 +38,9 @@ local spec = {
 	-- "test.virtual-machine-spec"
 }
 
+--- @param ts test_suite
+--- @param path string
+--- @param elapsed number
 local function output_tests(ts, path, elapsed)
 	print(("%s%s%s (%s%d/%d passed%s, %.3f s)"):format(
 		COLOR_INFO,
@@ -52,12 +55,14 @@ local function output_tests(ts, path, elapsed)
 
 	for _, test in ipairs(ts:tests()) do
 		if not test.passed then
+			-- luacov: disable
 			print(("%sTest failed%s at: %s\n%s"):format(
 				COLOR_FAIL,
 				COLOR_RESET,
 				test.source,
 				test.message
 			))
+			-- luacov: enable
 		end
 	end
 end
@@ -76,6 +81,7 @@ for _, path in ipairs(spec) do
 	tests_elapsed = tests_elapsed + elapsed
 end
 
+-- luacov: disable
 if tests_failed > 0 then
 	print(("%s*** %d failed tests! ***%s (%.3f s)"):format(COLOR_FAIL, tests_failed, COLOR_RESET, tests_elapsed))
 	os.exit(1)
