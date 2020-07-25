@@ -104,7 +104,7 @@ function output_stream:path()
 	return self._path
 end
 
---- Returns whether the stream was opened in binary mode.
+--- Returns whether or not the stream was opened in binary mode.
 --- @return boolean
 function output_stream:binary()
 	return self._binary

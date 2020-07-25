@@ -1,7 +1,6 @@
 --- An indication of a compile-time error.
 --- @class diagnostic
 local diagnostic = {}
-diagnostic.__index = diagnostic
 
 --- Creates a diagnostic.
 --- @param message string
