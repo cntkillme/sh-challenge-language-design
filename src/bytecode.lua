@@ -30,7 +30,8 @@ local instructions = {
 	-- Control flow instructions
 	arg = { format = formats.ib, opcode = 0x0C },
 	inv = { format = formats.iw, opcode = 0x0D },
-	ret = { format = formats.iv, opcode = 0x0E }
+	ret = { format = formats.iv, opcode = 0x0E },
+	hlt = { format = formats.iv, opcode = 0x0F }
 }
 
 bytecode.formats = formats

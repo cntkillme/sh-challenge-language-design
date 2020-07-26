@@ -66,13 +66,12 @@ local function test_codegen_success(self)
 		)
 	)
 
-
-			-- x = -10 / (2 ^ (3 % 1))
-
 	-- SHLang-1			| 53 48 4C 61 6E 67 2D 31
+	--				 let x
 	-- imm 0			| 07 00 00 00 00 00 00 00 00
+	-- 			let pi = 3.14
 	-- imm 3.14			| 07 1F 85 EB 51 B8 1E 09 40
-
+	-- 			x = -10 / (2 ^ (3 % 1))
 	-- imm 10			| 07 00 00 00 00 00 00 24 40
 	-- neg				| 06
 	-- imm 2			| 07 00 00 00 00 00 00 00 40
@@ -81,8 +80,7 @@ local function test_codegen_success(self)
 	-- rem				| 04
 	-- exp				| 05
 	-- div				| 03
-
-
+	--		 return g($0 + x, pi)
 	-- rep 0			| 09 00
 	-- imm 0			| 07 00 00 00 00 00 00 00 00
 	-- inp				| 0B
@@ -97,7 +95,7 @@ local function test_codegen_success(self)
 	-- cpy 0			| 08 00
 	-- mul				| 02
 	-- ret				| 0E
-	--            let g(x, y) = f(x + y)
+	--            let g(x, y) = f(x - y)
 	-- cpy 0			| 08 00
 	-- cpy 1			| 08 01
 	-- sub				| 01

@@ -51,7 +51,7 @@ function ast_codegen:visit_program(node)
 	end
 
 	node.returns:accept(self)
-	self:_emit_iv(bytecode.instructions.ret.opcode)
+	self:_emit_iv(bytecode.instructions.hlt.opcode)
 
 	-- Traverse over function definitions last.
 	for _, stmt in ipairs(funcDefs) do
@@ -66,7 +66,7 @@ function ast_codegen:visit_program(node)
 	end
 
 	-- Emit header.
-	table.insert(self._content, "SHLang-1")
+	table.insert(self._content, "SHLang-1.0")
 
 	-- Emit instructions outside of a function first.
 	table.insert(self._content, table.concat(self._body))
