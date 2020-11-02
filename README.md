@@ -2,8 +2,6 @@
 [![test](https://github.com/cntkillme/sh-challenge-language-design/workflows/test/badge.svg)](https://github.com/cntkillme/sh-challenge-language-design/actions)
 [![codecov](https://codecov.io/gh/cntkillme/sh-challenge-language-design/branch/master/graph/badge.svg)](https://codecov.io/gh/cntkillme/sh-challenge-language-design)
 
-An overview of the SHLang specification can be seen [here](doc/contents.md).
-
 ## Requirements
 The user is to complete the implementation of a compiler and an interpreter for SHLang. Various utilities and classes are already provided and the user is expected to make use of them.
 
